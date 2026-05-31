@@ -32,7 +32,7 @@ const programs = [
 
 export function ProgramsGrid() {
   return (
-    <section className="section-wrapper bg-white">
+    <section className="section-wrapper bg-gray-50">
       <div className="content-container">
         <h2 className="section-heading">Our Programs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">

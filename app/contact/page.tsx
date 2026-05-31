@@ -74,7 +74,7 @@ export default function ContactPage() {
                     <a href="https://instagram.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="Instagram">
                       <Instagram className="w-5 h-5" />
                     </a>
-                    <a href="https://linkedin.com/company/acholi-women-in-health-foundation" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/acholi-women-in-health-foundation-57686235a/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="LinkedIn">
                       <Linkedin className="w-5 h-5" />
                     </a>
                   </div>

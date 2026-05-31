@@ -73,7 +73,7 @@ export function Footer() {
               <a href="https://instagram.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="Instagram">
                 <Instagram className="w-6 h-6" />
               </a>
-              <a href="https://linkedin.com/company/acholi-women-in-health-foundation" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/acholi-women-in-health-foundation-57686235a/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-6 h-6" />
               </a>
             </div>

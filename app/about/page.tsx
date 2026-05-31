@@ -9,10 +9,10 @@ export default function AboutPage() {
   const values = ['Empower', 'Educate', 'Research', 'Network', 'Self Improvement', 'Leadership', 'Equity', 'Collaboration'];
   
   const approaches = [
-    { icon: <Users className="w-6 h-6 text-brand-green" />, title: "Community Ownership", desc: "Solutions designed with, not just for, the community." },
-    { icon: <Heart className="w-6 h-6 text-brand-green" />, title: "Integrated Care", desc: "Holistic health services addressing physical and mental wellbeing." },
-    { icon: <BookOpen className="w-6 h-6 text-brand-green" />, title: "Capacity Building", desc: "Equipping local health workers for sustainable impact." },
-    { icon: <Brain className="w-6 h-6 text-brand-green" />, title: "Advocacy", desc: "Amplifying women's voices in health policy." }
+    { icon: <Heart className="w-6 h-6 text-brand-green" />, title: "Health Services", desc: "Providing maternal and child health services, reproductive health education, and preventative care." },
+    { icon: <BookOpen className="w-6 h-6 text-brand-green" />, title: "Education and Training", desc: "Equipping women with essential health knowledge through workshops and training programs." },
+    { icon: <Brain className="w-6 h-6 text-brand-green" />, title: "Advocacy", desc: "Advocating for women's health rights and accessibility to healthcare services, working with stakeholders." },
+    { icon: <Users className="w-6 h-6 text-brand-green" />, title: "Community Engagement", desc: "Actively involving community members, fostering a collaborative approach to healthcare." }
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function AboutPage() {
             <div className="p-8 border-[1.5px] border-brand-brown rounded-xl bg-white">
               <h3 className="text-[24px] font-semibold text-brand-orange mb-4">Our Mission</h3>
               <p className="text-[#111111] text-[16px] leading-[1.6] italic">
-                "To improve healthcare outcomes of women and girls in northern Uganda through delivery of accessible community-based health services, building a community of empowered women in healthcare through mentorship, education and research."
+                "To enhance the well-being of women and children in the Acholi community by providing access to quality healthcare services, fostering education, and empowering women to be advocates for their health and rights."
               </p>
             </div>
             <div className="p-8 border-[1.5px] border-brand-brown rounded-xl bg-white">
