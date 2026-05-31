@@ -1,0 +1,115 @@
+"use client";
+
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, CheckCircle } from 'lucide-react';
+import { Twitter, Instagram, Linkedin } from '@/components/ui/SocialIcons';
+import { Button } from '@/components/ui/Button';
+import { Input, Textarea } from '@/components/ui/Input';
+import { Card } from '@/components/ui/Card';
+
+export default function ContactPage() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('loading');
+    setTimeout(() => setStatus('success'), 1500);
+  };
+
+  return (
+    <>
+      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[240px] px-4 md:px-8">
+        <div className="text-center">
+          <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2] mb-4">Contact Us</h1>
+          <p className="text-white/80 text-[18px]">
+            We'd love to hear from you. Get in touch with our team.
+          </p>
+        </div>
+      </section>
+
+      <section className="section-wrapper bg-gray-50">
+        <div className="content-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto">
+            
+            {/* Left Column: Details */}
+            <div>
+              <h2 className="section-heading mb-6">Get In Touch</h2>
+              <Card className="p-8">
+                <ul className="space-y-6 text-[#111111]">
+                  <li className="flex items-start">
+                    <div className="w-10 h-10 rounded-full bg-orange-tint flex items-center justify-center shrink-0 mr-4 text-brand-orange">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-brand-brown mb-1">Email</div>
+                      <a href="mailto:acholiwomeninhealth@gmail.com" className="hover:text-brand-orange transition-colors">acholiwomeninhealth@gmail.com</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-10 h-10 rounded-full bg-orange-tint flex items-center justify-center shrink-0 mr-4 text-brand-orange">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-brand-brown mb-1">Phone</div>
+                      <a href="tel:0762401363" className="hover:text-brand-orange transition-colors block">0762401363</a>
+                      <a href="tel:0772388143" className="hover:text-brand-orange transition-colors block mt-1">0772388143</a>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-10 h-10 rounded-full bg-orange-tint flex items-center justify-center shrink-0 mr-4 text-brand-orange">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-brand-brown mb-1">Address</div>
+                      <address className="not-italic text-gray-600">P.O. Box 361606<br/>Pece, Gulu City</address>
+                    </div>
+                  </li>
+                </ul>
+                <div className="mt-8 pt-8 border-t border-gray-200">
+                  <div className="font-semibold text-brand-brown mb-4">Follow Us</div>
+                  <div className="flex space-x-4">
+                    <a href="https://x.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="X">
+                      <Twitter className="w-5 h-5" />
+                    </a>
+                    <a href="https://instagram.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="Instagram">
+                      <Instagram className="w-5 h-5" />
+                    </a>
+                    <a href="https://linkedin.com/company/acholi-women-in-health-foundation" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-brand-brown hover:bg-brand-orange hover:text-white transition-colors" aria-label="LinkedIn">
+                      <Linkedin className="w-5 h-5" />
+                    </a>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Right Column: Form */}
+            <div>
+              <Card className="p-8 h-full">
+                {status === 'success' ? (
+                  <div className="flex flex-col items-center text-center py-12 h-full justify-center">
+                    <div className="w-16 h-16 bg-green-tint rounded-full flex items-center justify-center mb-6 text-brand-green">
+                      <CheckCircle className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-[20px] font-bold text-brand-brown mb-2">Message Sent</h3>
+                    <p className="text-gray-600">Your message has been sent. We'll be in touch soon.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <Input label="Full Name" required disabled={status === 'loading'} />
+                    <Input label="Email Address" type="email" required disabled={status === 'loading'} />
+                    <Input label="Subject" required disabled={status === 'loading'} />
+                    <Textarea label="Message" required disabled={status === 'loading'} />
+                    <Button type="submit" variant="primary" size="medium" className="w-full" isLoading={status === 'loading'}>
+                      Send Message
+                    </Button>
+                  </form>
+                )}
+              </Card>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}

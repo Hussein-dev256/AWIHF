@@ -1,0 +1,91 @@
+import React from 'react';
+import Link from 'next/link';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { Twitter, Instagram, Linkedin } from '@/components/ui/SocialIcons';
+
+const links = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Programs', href: '/programs' },
+  { name: 'News', href: '/news' },
+  { name: 'Stories', href: '/stories' },
+  { name: 'Team', href: '/team' },
+  { name: 'Donate', href: '/donate' },
+  { name: 'Contact', href: '/contact' },
+];
+
+export function Footer() {
+  return (
+    <footer className="bg-brand-brown text-white pt-16 pb-8 px-4 md:px-8 lg:px-16">
+      <div className="max-w-content mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
+          
+          {/* Column 1 */}
+          <div className="flex flex-col space-y-4">
+            <span className="text-brand-orange font-bold text-2xl tracking-tight">AWIHF</span>
+            <p className="text-white/80 max-w-sm leading-relaxed">
+              Improving healthcare outcomes for women and girls in Northern Uganda.
+            </p>
+          </div>
+
+          {/* Column 2 */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
+            <div className="grid grid-cols-2 gap-2">
+              {links.map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href}
+                  className="text-white/80 hover:text-brand-gold transition-colors py-1"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 3 */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4 text-white">Contact Us</h4>
+            <ul className="space-y-3 mb-6 text-white/80">
+              <li className="flex items-start">
+                <Mail className="w-5 h-5 mr-3 mt-0.5 shrink-0" />
+                <a href="mailto:acholiwomeninhealth@gmail.com" className="hover:text-brand-gold transition-colors">
+                  acholiwomeninhealth@gmail.com
+                </a>
+              </li>
+              <li className="flex items-start">
+                <Phone className="w-5 h-5 mr-3 mt-0.5 shrink-0" />
+                <a href="tel:0762401363" className="hover:text-brand-gold transition-colors">
+                  0762401363 / 0772388143
+                </a>
+              </li>
+              <li className="flex items-start">
+                <MapPin className="w-5 h-5 mr-3 mt-0.5 shrink-0" />
+                <span>P.O. Box 361606, Pece, Gulu City</span>
+              </li>
+            </ul>
+            
+            <div className="flex space-x-4">
+              <a href="https://x.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="X (Twitter)">
+                <Twitter className="w-6 h-6" />
+              </a>
+              <a href="https://instagram.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="Instagram">
+                <Instagram className="w-6 h-6" />
+              </a>
+              <a href="https://linkedin.com/company/acholi-women-in-health-foundation" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/20 pt-8 mt-8 text-center md:text-left">
+          <p className="text-[12px] text-gray-400">
+            © 2025 Acholi Women in Health Foundation. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}

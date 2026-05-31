@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply text-[#111111] bg-white antialiased;
+  }
+}
+
+@layer components {
+  .section-wrapper { @apply w-full px-4 md:px-8 lg:px-16 py-10 md:py-16; }
+  .content-container { @apply max-w-content mx-auto; }
+  .btn-primary { @apply bg-gradient-brand-h text-white font-semibold rounded-lg px-6 py-3 hover:brightness-110 active:scale-95 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-orange focus-visible:outline-offset-2 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed disabled:bg-none; }
+  .btn-secondary { @apply bg-white text-brand-brown border border-brand-brown font-semibold rounded-lg px-6 py-3 hover:bg-brand-brown hover:text-white active:scale-95 transition-all duration-200; }
+  .card { @apply bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-200; }
+  .input-field { @apply w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-[#111111] placeholder:text-gray-400 focus:outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-colors duration-150; }
+  .section-heading { @apply text-3xl font-semibold text-brand-brown mb-4; }
+  .section-subheading { @apply text-lg text-gray-500 max-w-2xl; }
+}
