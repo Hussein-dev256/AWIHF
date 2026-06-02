@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '../ui/Button';
 
 export function Hero() {
@@ -12,9 +13,24 @@ export function Hero() {
   }, []);
 
   return (
-    <section className="w-full bg-gradient-brand flex items-center justify-center relative overflow-hidden min-h-[400px] md:min-h-[520px] px-4 md:px-8 lg:px-16 py-[96px]">
+    <section className="w-full flex items-center justify-center relative overflow-hidden min-h-[400px] md:min-h-[520px] px-4 md:px-8 lg:px-16 py-[96px]">
+      {/* Layer 1: Background Image positioned at the top of the container */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/images/AWIHF-Hero.webp"
+          alt="Acholi Women in Health Foundation field healthcare operations in Northern Uganda"
+          fill
+          priority
+          className="object-cover object-top transition-transform duration-500"
+        />
+      </div>
+
+      {/* Layer 2: Subtle neutral overlay for readability */}
+      <div className="absolute inset-0 bg-black/25 z-10" />
+
+      {/* Layer 3: Content Layer */}
       <div 
-        className={`max-w-content mx-auto text-center flex flex-col items-center z-10 transition-opacity duration-600 ${mounted ? 'opacity-100' : 'opacity-0'}`}
+        className={`max-w-content mx-auto text-center flex flex-col items-center z-20 transition-opacity duration-600 ${mounted ? 'opacity-100' : 'opacity-0'}`}
       >
         <h1 className="text-white text-4xl md:text-[48px] font-bold leading-[1.1] mb-6 max-w-4xl">
           Healthcare for Every Acholi Woman.
@@ -24,7 +40,7 @@ export function Hero() {
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link href="/donate">
-            <Button size="large" variant="primary" className="w-full sm:w-auto bg-white text-brand-brown hover:bg-white hover:brightness-100">
+            <Button size="large" variant="primary" className="w-full sm:w-auto">
               Donate Now
             </Button>
           </Link>

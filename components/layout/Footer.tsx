@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { Twitter, Instagram, Linkedin } from '@/components/ui/SocialIcons';
 
@@ -7,10 +8,11 @@ const links = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Programs', href: '/programs' },
+  { name: 'Impact', href: '/impact' },
   { name: 'News', href: '/news' },
   { name: 'Stories', href: '/stories' },
-  { name: 'Team', href: '/team' },
-  { name: 'Donate', href: '/donate' },
+  { name: 'Partners', href: '/partners' },
+  { name: 'Get Involved', href: '/get-involved' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -22,7 +24,16 @@ export function Footer() {
           
           {/* Column 1 */}
           <div className="flex flex-col space-y-4">
-            <span className="text-brand-orange font-bold text-2xl tracking-tight">AWIHF</span>
+            <div className="flex items-center gap-3">
+              <Image 
+                src="/images/AWIHF logo.webp" 
+                alt="Acholi Women in Health Foundation Logo" 
+                width={48} 
+                height={48}
+                className="object-contain bg-white rounded-lg p-1"
+              />
+              <span className="text-brand-orange font-bold text-2xl tracking-tight">AWIHF</span>
+            </div>
             <p className="text-white/80 max-w-sm leading-relaxed">
               Improving healthcare outcomes for women and girls in Northern Uganda.
             </p>

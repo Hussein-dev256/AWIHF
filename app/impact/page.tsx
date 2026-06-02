@@ -52,7 +52,7 @@ export default function ImpactPage() {
       {/* Patiko Outreach Spotlight */}
       <section className="relative w-full min-h-[400px] flex items-center justify-center px-4 md:px-8 py-16">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/logo.svg" alt="Patiko Medical Outreach" fill className="object-cover opacity-30" />
+          <Image src="/images/lucky.webp" alt="Patiko Medical Outreach" fill className="object-cover opacity-20" />
           <div className="absolute inset-0 bg-brand-brown/80" />
         </div>
         <div className="relative z-10 text-center max-w-4xl">

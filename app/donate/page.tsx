@@ -168,6 +168,11 @@ export default function DonatePage() {
               </Button>
             </form>
           )}
+          <div className="mt-6 pt-6 border-t border-gray-100 text-center">
+            <p className="text-[12px] text-gray-500 leading-relaxed">
+              Acholi Women in Health Foundation is a registered non-profit organization in Gulu, Northern Uganda. <strong>Our Financial Statement is available upon request</strong>. For inquiries, email <a href="mailto:acholiwomeninhealth@gmail.com" className="text-brand-orange hover:underline">acholiwomeninhealth@gmail.com</a>.
+            </p>
+          </div>
         </div>
       </section>
 

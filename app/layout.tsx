@@ -7,8 +7,26 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://acholiwomeninhealth.org'),
   title: "AWIHF | Acholi Women in Health Foundation",
   description: "Improving healthcare outcomes for women and girls in Northern Uganda.",
+  icons: {
+    icon: "/images/AWIHF logo.svg",
+    shortcut: "/images/AWIHF logo.svg",
+    apple: "/images/AWIHF logo.svg",
+  },
+  openGraph: {
+    title: "AWIHF | Acholi Women in Health Foundation",
+    description: "Improving healthcare outcomes for women and girls in Northern Uganda.",
+    images: [
+      {
+        url: "/images/AWIHF logo.svg",
+        width: 800,
+        height: 800,
+        alt: "Acholi Women in Health Foundation Logo",
+      }
+    ]
+  }
 };
 
 export default function RootLayout({

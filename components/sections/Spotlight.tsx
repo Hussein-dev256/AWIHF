@@ -8,14 +8,16 @@ export function Spotlight() {
     <section className="section-wrapper bg-brown-tint">
       <div className="content-container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden shadow-lg">
-            {/* Placeholder image since we don't have the real Patiko outreach photo. Use fallback. */}
-            <div className="absolute inset-0 bg-brand-brown/10 z-10" />
+          <div className="w-full max-w-[450px] mx-auto relative rounded-xl overflow-hidden shadow-lg">
+            {/* Authentic photo of the Gulu/Patiko outreach program. */}
+            <div className="absolute inset-0 bg-brand-brown/10 z-10 pointer-events-none" />
             <Image 
-              src="/images/logo.svg" 
-              alt="AWIHF nurse conducting antenatal check at Patiko Medical Outreach, July 2025"
-              fill
-              className="object-cover"
+              src="/images/AWIHF-Prog.webp" 
+              alt="Acholi Women in Health Foundation team and community members at the Patiko Medical Outreach program"
+              width={1086}
+              height={1448}
+              className="w-full h-auto object-contain"
+              priority
             />
           </div>
           <div className="flex flex-col items-start">

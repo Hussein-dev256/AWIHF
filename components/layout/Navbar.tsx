@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -13,7 +14,8 @@ const links = [
   { name: 'Impact', href: '/impact' },
   { name: 'News', href: '/news' },
   { name: 'Stories', href: '/stories' },
-  { name: 'Team', href: '/team' },
+  { name: 'Partners', href: '/partners' },
+  { name: 'Get Involved', href: '/get-involved' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -29,8 +31,16 @@ export function Navbar() {
   return (
     <>
       <nav className="sticky top-0 z-50 w-full h-14 md:h-16 bg-brand-brown px-4 md:px-8 lg:px-16 flex items-center justify-between shadow-sm">
-        <Link href="/" className="flex items-center">
-          <span className="text-brand-orange font-bold text-xl tracking-tight">AWIHF</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image 
+            src="/images/AWIHF logo.webp" 
+            alt="Acholi Women in Health Foundation Logo" 
+            width={40} 
+            height={40}
+            className="object-contain w-9 h-9 md:w-10 md:h-10"
+            priority
+          />
+          <span className="text-brand-orange font-bold text-xl tracking-tight hidden sm:inline-block">AWIHF</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -70,7 +80,16 @@ export function Navbar() {
         className={`fixed inset-0 z-[60] bg-brand-brown transform transition-transform duration-250 ease-in-out md:hidden flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="h-14 px-4 flex items-center justify-between border-b border-white/10">
-          <span className="text-brand-orange font-bold text-xl">AWIHF</span>
+          <Link href="/" className="flex items-center gap-2">
+            <Image 
+              src="/images/AWIHF logo.webp" 
+              alt="Acholi Women in Health Foundation Logo" 
+              width={36} 
+              height={36}
+              className="object-contain"
+            />
+            <span className="text-brand-orange font-bold text-xl">AWIHF</span>
+          </Link>
           <button 
             className="text-white p-2"
             onClick={() => setIsOpen(false)}
