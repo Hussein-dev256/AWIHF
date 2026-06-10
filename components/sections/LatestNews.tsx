@@ -4,10 +4,10 @@ import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { newsPosts } from '@/lib/content/news';
+import { getFeaturedNewsPosts } from '@/lib/content/news';
 
-export function LatestNews() {
-  const latestPosts = newsPosts.slice(0, 3);
+export async function LatestNews() {
+  const latestPosts = await getFeaturedNewsPosts(3);
 
   return (
     <section className="section-wrapper bg-white">
@@ -27,8 +27,8 @@ export function LatestNews() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge variant="news" className="bg-brand-orange text-white text-[12px]">{item.category}</Badge>
+                <div className="absolute top-4 left-4 z-30">
+                  <Badge variant="news" className="!bg-brand-orange !text-white text-[12px] shadow-md ring-1 ring-white/70">{item.category}</Badge>
                 </div>
               </div>
               <div className="p-5 md:p-6 flex flex-col flex-1">

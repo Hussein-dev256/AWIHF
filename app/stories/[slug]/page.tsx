@@ -90,7 +90,7 @@ export default async function StoryDetailPage(props: { params: Promise<{ slug: s
         <div className="max-w-3xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <Badge variant="program" className="bg-brand-orange text-white mb-4 text-[12px]">{story.category}</Badge>
+            <Badge variant="program" className="!bg-brand-orange !text-white mb-4 text-[12px] shadow-sm ring-1 ring-brand-orange/20">{story.category}</Badge>
             <h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-brand-brown leading-tight mb-6">
               {story.title}
             </h1>

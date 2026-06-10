@@ -1,213 +1,122 @@
-"use client";
-
-import React, { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
+import React from 'react';
+import Link from 'next/link';
+import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
+import { Card } from '@/components/ui/Card';
+import { CheckCircle2, Phone, ShieldCheck } from 'lucide-react';
 
-const amounts = [10000, 25000, 50000, 100000, 250000];
+const paymentOptions = [
+  {
+    name: 'MTN MoMoPay',
+    accent: 'bg-[#FFCC00]',
+    code: '[CODE TO BE PROVIDED]',
+  },
+  {
+    name: 'Airtel Pay',
+    accent: 'bg-[#FF0000]',
+    code: '[CODE TO BE PROVIDED]',
+  },
+];
+
+const steps = [
+  'Open your MTN MoMoPay or Airtel Money application.',
+  'Choose the option to pay by organization or merchant code.',
+  'Enter the AWIHF organization code shown on this page.',
+  'Confirm the amount and complete payment independently in your mobile money app.',
+];
 
 export default function DonatePage() {
-  const [selectedAmount, setSelectedAmount] = useState<number | 'custom' | null>(null);
-  const [customAmount, setCustomAmount] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'mtn' | 'airtel' | null>(null);
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
-
-  const finalAmount = selectedAmount === 'custom' ? customAmount : selectedAmount;
-  const isFormValid = finalAmount && Number(finalAmount) > 0 && name && email && paymentMethod;
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!isFormValid) return;
-    setStatus('loading');
-    setTimeout(() => {
-      setStatus('success');
-    }, 1500);
-  };
-
   return (
     <>
-      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[240px] px-4 md:px-8">
+      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[260px] px-4 md:px-8">
         <div className="text-center max-w-2xl">
           <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2] mb-4">Support Our Work</h1>
-          <p className="text-white/80 text-[18px]">
-            Every contribution reaches women and girls in Northern Uganda directly.
+          <p className="text-white/85 text-[18px]">
+            Use AWIHF&apos;s mobile money organization codes to complete your donation securely from your own phone.
           </p>
         </div>
       </section>
 
-      <section className="w-full px-4 py-12 md:py-16 -mt-16 z-10 relative">
-        <div className="max-w-[480px] mx-auto bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8">
-          {status === 'success' ? (
-            <div className="flex flex-col items-center text-center py-8">
-              <div className="w-16 h-16 bg-green-tint rounded-full flex items-center justify-center mb-6 text-brand-green">
-                <CheckCircle className="w-8 h-8" />
-              </div>
-              <h2 className="text-[24px] font-bold text-brand-brown mb-2">Thank you, {name}!</h2>
-              <p className="text-gray-600 leading-[1.6]">
-                Your donation of <strong className="text-[#111111]">{finalAmount?.toLocaleString()} UGX</strong> has been received. We will send a confirmation to <strong className="text-[#111111]">{email}</strong>.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col space-y-8">
-              
-              {/* Amount Selection */}
-              <div>
-                <h3 className="text-[16px] font-semibold text-brand-brown mb-3">Select Amount (UGX) <span className="text-brand-orange">*</span></h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {amounts.map((amt) => (
-                    <button
-                      key={amt}
-                      type="button"
-                      onClick={() => setSelectedAmount(amt)}
-                      className={`py-3 px-2 text-center rounded-xl border transition-all duration-200 font-medium text-[15px] ${
-                        selectedAmount === amt 
-                          ? 'border-brand-orange bg-orange-tint text-brand-orange shadow-sm' 
-                          : 'border-gray-200 text-gray-600 hover:border-brand-orange/50 hover:bg-gray-50'
-                      }`}
-                    >
-                      {amt.toLocaleString()}
-                    </button>
-                  ))}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedAmount('custom')}
-                    className={`py-3 px-2 text-center rounded-xl border transition-all duration-200 font-medium text-[15px] ${
-                      selectedAmount === 'custom' 
-                        ? 'border-brand-orange bg-orange-tint text-brand-orange shadow-sm' 
-                        : 'border-gray-200 text-gray-600 hover:border-brand-orange/50 hover:bg-gray-50'
-                    }`}
-                  >
-                    Custom
-                  </button>
-                </div>
-                {selectedAmount === 'custom' && (
-                  <div className="mt-4">
-                    <Input 
-                      label="Custom Amount (UGX)"
-                      type="number"
-                      min="1000"
-                      value={customAmount}
-                      onChange={(e) => setCustomAmount(e.target.value)}
-                      placeholder="Enter amount"
-                      required
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* Donor Info */}
-              <div className="space-y-4">
-                <h3 className="text-[16px] font-semibold text-brand-brown mb-1">Your Information</h3>
-                <Input 
-                  label="Full Name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Jane Doe"
-                  required
-                />
-                <Input 
-                  label="Email Address"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="jane@example.com"
-                  required
-                />
-              </div>
-
-              {/* Payment Method */}
-              <div>
-                <h3 className="text-[16px] font-semibold text-brand-brown mb-3">Payment Method <span className="text-brand-orange">*</span></h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('mtn')}
-                    className={`relative p-4 rounded-xl border text-left transition-all duration-200 ${
-                      paymentMethod === 'mtn' ? 'border-brand-orange ring-1 ring-brand-orange bg-orange-tint/20' : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-[#FFCC00] mb-2" />
-                    <div className="font-semibold text-brand-brown text-sm">MTN Mobile Money</div>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod('airtel')}
-                    className={`relative p-4 rounded-xl border text-left transition-all duration-200 ${
-                      paymentMethod === 'airtel' ? 'border-brand-orange ring-1 ring-brand-orange bg-orange-tint/20' : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="w-8 h-8 rounded-full bg-[#FF0000] mb-2" />
-                    <div className="font-semibold text-brand-brown text-sm">Airtel Money</div>
-                  </button>
-                </div>
-                {paymentMethod === 'mtn' && (
-                  <p className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                    You will receive a prompt on your MTN phone to enter your PIN to confirm the payment.
-                  </p>
-                )}
-                {paymentMethod === 'airtel' && (
-                  <p className="mt-3 text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                    You will receive a prompt on your Airtel phone to enter your PIN to confirm the payment.
-                  </p>
-                )}
-              </div>
-
-              <Button 
-                type="submit" 
-                variant="primary" 
-                size="large" 
-                className="w-full"
-                disabled={!isFormValid || status === 'loading'}
-                isLoading={status === 'loading'}
-              >
-                Donate Now
-              </Button>
-            </form>
-          )}
-          <div className="mt-6 pt-6 border-t border-gray-100 text-center">
-            <p className="text-[12px] text-gray-500 leading-relaxed">
-              Acholi Women in Health Foundation is a registered non-profit organization in Gulu, Northern Uganda. <strong>Our Financial Statement is available upon request</strong>. For inquiries, email <a href="mailto:acholiwomeninhealth@gmail.com" className="text-brand-orange hover:underline">acholiwomeninhealth@gmail.com</a>.
+      <section className="w-full px-4 py-12 md:py-16 -mt-14 relative z-10">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <Card className="lg:col-span-7 bg-white p-6 md:p-8 shadow-lg border border-gray-200">
+            <Badge variant="news" className="!bg-brand-orange !text-white mb-5 shadow-sm ring-1 ring-brand-orange/20">
+              Manual Mobile Money Donation
+            </Badge>
+            <h2 className="text-[26px] md:text-[32px] font-bold text-brand-brown leading-[1.25] mb-4">
+              Donate through MTN MoMoPay or Airtel Pay
+            </h2>
+            <p className="text-gray-600 text-[16px] leading-[1.7] mb-8">
+              AWIHF does not process card payments or online checkout transactions on this website. The website only displays the official organization payment information. You complete the payment independently through your mobile money application.
             </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {paymentOptions.map((option) => (
+                <div key={option.name} className="rounded-xl border border-gray-200 bg-gray-50 p-5">
+                  <div className={`w-10 h-10 ${option.accent} rounded-full mb-4 shadow-sm`} />
+                  <h3 className="text-lg font-bold text-brand-brown mb-2">{option.name}</h3>
+                  <p className="text-sm text-gray-500 mb-2">Organization Code</p>
+                  <div className="rounded-lg bg-white border border-gray-200 px-4 py-3 font-semibold text-brand-brown">
+                    {option.code}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
+
+          <div className="lg:col-span-5 space-y-6">
+            <Card className="bg-green-tint border border-brand-green/20 p-6 md:p-7">
+              <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-brand-green mb-5 shadow-sm">
+                <Phone className="w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-brown mb-4">How to Complete Your Donation</h3>
+              <ol className="space-y-3">
+                {steps.map((step, index) => (
+                  <li key={step} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
+                    <span className="w-6 h-6 rounded-full bg-brand-green text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                      {index + 1}
+                    </span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
+            </Card>
+
+            <Card className="p-6 md:p-7 bg-white border border-gray-200">
+              <div className="flex items-start gap-3">
+                <ShieldCheck className="w-6 h-6 text-brand-orange shrink-0 mt-1" />
+                <div>
+                  <h3 className="font-bold text-brand-brown mb-2">No Website Checkout</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    This page does not collect payment details, process transactions, or trigger mobile money prompts.
+                  </p>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
 
       <section className="section-wrapper bg-green-tint">
         <div className="content-container max-w-4xl mx-auto">
-          <h2 className="section-heading text-center mb-8">Where Your Money Goes</h2>
+          <h2 className="section-heading text-center mb-8">Where Your Support Goes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-6 rounded-xl flex items-start">
-              <div className="w-10 h-10 rounded-full bg-green-tint text-brand-green flex items-center justify-center shrink-0 mr-4 font-bold">1</div>
-              <div>
-                <h4 className="font-semibold text-brand-brown mb-1">Maternal Health Supplies</h4>
-                <p className="text-sm text-gray-600">Providing clean delivery kits and essential antenatal supplements for safe motherhood.</p>
+            {[
+              'Maternal health supplies and safe motherhood care.',
+              'Community outreach logistics and essential medical supplies.',
+              'Reusable sanitary pads and dignity kits for vulnerable girls.',
+              'Mental health counseling and trauma-informed support groups.',
+            ].map((item) => (
+              <div key={item} className="bg-white p-6 rounded-xl flex items-start gap-4">
+                <CheckCircle2 className="w-6 h-6 text-brand-green shrink-0 mt-0.5" />
+                <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
               </div>
-            </div>
-            <div className="bg-white p-6 rounded-xl flex items-start">
-              <div className="w-10 h-10 rounded-full bg-green-tint text-brand-green flex items-center justify-center shrink-0 mr-4 font-bold">2</div>
-              <div>
-                <h4 className="font-semibold text-brand-brown mb-1">Community Outreach</h4>
-                <p className="text-sm text-gray-600">Funding transportation and medical supplies for rural health camps like the Patiko outreach.</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-xl flex items-start">
-              <div className="w-10 h-10 rounded-full bg-green-tint text-brand-green flex items-center justify-center shrink-0 mr-4 font-bold">3</div>
-              <div>
-                <h4 className="font-semibold text-brand-brown mb-1">Empowering Girls</h4>
-                <p className="text-sm text-gray-600">Distributing reusable sanitary pads to keep vulnerable girls in school during their menstruation.</p>
-              </div>
-            </div>
-            <div className="bg-white p-6 rounded-xl flex items-start">
-              <div className="w-10 h-10 rounded-full bg-green-tint text-brand-green flex items-center justify-center shrink-0 mr-4 font-bold">4</div>
-              <div>
-                <h4 className="font-semibold text-brand-brown mb-1">Mental Health Counseling</h4>
-                <p className="text-sm text-gray-600">Facilitating trauma-informed care groups and professional counseling sessions.</p>
-              </div>
-            </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link href="/contact">
+              <Button variant="secondary" size="medium">Contact AWIHF</Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -48,8 +48,17 @@ export default function ImpactPage() {
 
   return (
     <>
-      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[280px] px-4 md:px-8">
-        <div className="text-center">
+      <section className="relative w-full flex items-center justify-center min-h-[320px] md:min-h-[380px] px-4 md:px-8 overflow-hidden">
+        <Image
+          src="/images/AWIHF-Patiko.webp"
+          alt="Patiko Medical Outreach community impact"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-brand-brown/70" />
+        <div className="relative z-10 text-center">
           <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2] mb-4">Our 2025 Impact</h1>
           <p className="text-white/80 text-[18px] max-w-2xl mx-auto">Measurable change across the Acholi sub-region — community-centred health delivery at scale.</p>
         </div>
@@ -145,8 +154,8 @@ export default function ImpactPage() {
                     fill 
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 left-4 z-10">
-                    <Badge variant="program" className="bg-brand-orange text-white text-[12px]">{story.category}</Badge>
+                  <div className="absolute top-4 left-4 z-30">
+                    <Badge variant="program" className="!bg-brand-orange !text-white text-[12px] shadow-md ring-1 ring-white/70">{story.category}</Badge>
                   </div>
                 </div>
                 <div className="p-5 md:p-6 flex flex-col flex-1">

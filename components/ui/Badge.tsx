@@ -7,7 +7,7 @@ interface BadgeProps {
 }
 
 export function Badge({ children, variant = 'program', className = '' }: BadgeProps) {
-  const baseStyles = "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium";
+  const baseStyles = "inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm";
   
   const variants = {
     'program': "bg-green-tint text-brand-green",

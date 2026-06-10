@@ -45,6 +45,7 @@ export default function AboutPage() {
       role: "Founder & Executive Director",
       bio: "Passionate about improving healthcare access, safe motherhood, and peer health education for women and girls in Northern Uganda.",
       image: "/images/lucky.webp",
+      imageClassName: "object-contain",
       linkedin: "#"
     },
     {
@@ -52,6 +53,7 @@ export default function AboutPage() {
       role: "Co-Founder & Operations Director",
       bio: "Dedicated to building resilient local health networks, trauma-informed psychosocial services, and community-led strengthening programs.",
       image: "/images/stephen.webp",
+      imageClassName: "object-cover object-top",
       linkedin: "#"
     }
   ];
@@ -160,7 +162,7 @@ export default function AboutPage() {
                     src={member.image} 
                     alt={member.name} 
                     fill 
-                    className="object-contain"
+                    className={member.imageClassName}
                   />
                 </div>
                 <h4 className="text-[22px] font-bold text-brand-brown mb-1">{member.name}</h4>

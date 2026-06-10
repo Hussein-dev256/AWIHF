@@ -7,19 +7,20 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { ArrowLeft, Calendar, User, Clock, Bookmark } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
-import { getNewsPost, newsPosts } from '@/lib/content/news';
+import { getNewsPost, getNewsPosts } from '@/lib/content/news';
 
 type NewsDetailProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const newsPosts = await getNewsPosts();
   return newsPosts.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata(props: NewsDetailProps): Promise<Metadata> {
   const params = await props.params;
-  const article = getNewsPost(params.slug);
+  const article = await getNewsPost(params.slug);
 
   if (!article) {
     return {};
@@ -43,7 +44,7 @@ export async function generateMetadata(props: NewsDetailProps): Promise<Metadata
 
 export default async function NewsDetailPage(props: NewsDetailProps) {
   const params = await props.params;
-  const article = getNewsPost(params.slug);
+  const article = await getNewsPost(params.slug);
 
   if (!article) {
     notFound();
@@ -65,7 +66,7 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
       <article className="section-wrapper bg-white py-12 md:py-20">
         <div className="max-w-3xl mx-auto">
           <div className="mb-8">
-            <Badge variant="news" className="bg-brand-orange text-white mb-4 text-[12px]">{article.category}</Badge>
+            <Badge variant="news" className="!bg-brand-orange !text-white mb-4 text-[12px] shadow-sm ring-1 ring-brand-orange/20">{article.category}</Badge>
             <h1 className="text-3xl md:text-4xl lg:text-[40px] font-bold text-brand-brown leading-tight mb-6">
               {article.title}
             </h1>

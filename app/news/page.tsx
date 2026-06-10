@@ -3,9 +3,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
-import { newsPosts } from '@/lib/content/news';
+import { getNewsPosts } from '@/lib/content/news';
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const newsPosts = await getNewsPosts();
+
   return (
     <section className="section-wrapper bg-white min-h-screen">
       <div className="content-container">
@@ -24,7 +26,7 @@ export default function NewsPage() {
             aria-label="Search news"
           />
           <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto mt-4 md:mt-0">
-            <Badge variant="news" className="bg-brand-orange text-white">All Updates</Badge>
+            <Badge variant="news" className="!bg-brand-orange !text-white shadow-sm ring-1 ring-brand-orange/20">All Updates</Badge>
             <Badge variant="news" className="bg-gray-100 text-gray-600 hover:bg-gray-200">Outreach</Badge>
             <Badge variant="news" className="bg-gray-100 text-gray-600 hover:bg-gray-200">Mentorship</Badge>
             <Badge variant="news" className="bg-gray-100 text-gray-600 hover:bg-gray-200">Preventive Care</Badge>
@@ -42,8 +44,8 @@ export default function NewsPage() {
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute top-4 left-4 z-10">
-                  <Badge variant="news" className="bg-brand-orange text-white text-[12px]">{item.category}</Badge>
+                <div className="absolute top-4 left-4 z-30">
+                  <Badge variant="news" className="!bg-brand-orange !text-white text-[12px] shadow-md ring-1 ring-white/70">{item.category}</Badge>
                 </div>
               </div>
               <div className="p-5 md:p-6 flex flex-col flex-1">

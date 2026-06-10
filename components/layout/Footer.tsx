@@ -19,14 +19,12 @@ export function Footer() {
     <footer className="bg-brand-brown text-white pt-16 pb-8 px-4 md:px-8 lg:px-16">
       <div className="max-w-content mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-12">
-          
-          {/* Column 1 */}
           <div className="flex flex-col space-y-4">
             <div className="flex items-center gap-3">
-              <Image 
-                src="/images/AWIHF logo.webp" 
-                alt="Acholi Women in Health Foundation Logo" 
-                width={48} 
+              <Image
+                src="/images/AWIHF logo.webp"
+                alt="Acholi Women in Health Foundation Logo"
+                width={48}
                 height={48}
                 className="object-contain bg-white rounded-lg p-1"
               />
@@ -37,13 +35,12 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Column 2 */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Quick Links</h4>
             <div className="grid grid-cols-2 gap-2">
               {links.map((link) => (
-                <Link 
-                  key={link.name} 
+                <Link
+                  key={link.name}
                   href={link.href}
                   className="text-white/80 hover:text-brand-gold transition-colors py-1"
                 >
@@ -53,7 +50,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Column 3 */}
           <div>
             <h4 className="text-lg font-semibold mb-4 text-white">Contact Us</h4>
             <ul className="space-y-3 mb-6 text-white/80">
@@ -74,7 +70,7 @@ export function Footer() {
                 <span>P.O. Box 361606, Pece, Gulu City</span>
               </li>
             </ul>
-            
+
             <div className="flex space-x-4">
               <a href="https://x.com/acholiwomeninhealth" target="_blank" rel="noopener noreferrer" className="text-white hover:text-brand-gold transition-colors" aria-label="X (Twitter)">
                 <Twitter className="w-6 h-6" />
@@ -91,7 +87,16 @@ export function Footer() {
 
         <div className="border-t border-white/20 pt-8 mt-8 text-center md:text-left">
           <p className="text-[12px] text-gray-400">
-            © 2025 Acholi Women in Health Foundation. All rights reserved.
+            &copy; 2025 AWIHF |{' '}
+            <a
+              href="https://mhussein.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand-gold transition-colors"
+              aria-label="Website Developed by Web Developer Uganda, opens in a new tab"
+            >
+              Website Developed by Web Developer Uganda
+            </a>
           </p>
         </div>
       </div>
