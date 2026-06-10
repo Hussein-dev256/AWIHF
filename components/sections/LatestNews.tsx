@@ -1,36 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { newsPosts } from '@/lib/content/news';
 
 export function LatestNews() {
-  const newsItems = [
-    {
-      title: "Patiko Medical Outreach Reaches 1,000+ Households",
-      category: "Outreach",
-      date: "July 14, 2025",
-      excerpt: "Our high-volume, community-rooted medical camp in Patiko delivered free medical consultations, vision screenings, and maternal care to 1,000+ underserved households over four days.",
-      image: "/images/lucky.webp",
-      href: "/news/patiko-medical-outreach-2025"
-    },
-    {
-      title: "National Mentorship Programme Launched",
-      category: "Mentorship",
-      date: "November 5, 2025",
-      excerpt: "In Phase 3 of our programming, AWIHF officially launched a national pipeline connecting nursing and medical student professionals with experienced clinical leaders across Uganda.",
-      image: "/images/stephen.webp",
-      href: "/news/national-mentorship-launch"
-    },
-    {
-      title: "Regional Cervical Cancer Initiative Rolled Out",
-      category: "Preventive Care",
-      date: "September 25, 2025",
-      excerpt: "AWIHF rolled out extensive public screening awareness and diagnosis literacy campaigns across sub-counties, educating rural women on early-detection preventive pathways.",
-      image: "/images/lucky.webp",
-      href: "/news/cervical-cancer-regional-initiative"
-    }
-  ];
+  const latestPosts = newsPosts.slice(0, 3);
 
   return (
     <section className="section-wrapper bg-white">
@@ -40,13 +17,15 @@ export function LatestNews() {
           <h2 className="section-heading">Latest News & Updates</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-8 mb-10">
-          {newsItems.map((item, index) => (
-            <Card key={index} className="group p-0 overflow-hidden flex flex-col h-full hover:shadow-xl transition-all duration-300">
+          {latestPosts.map((item) => (
+            <Card key={item.slug} className="group p-0 overflow-hidden flex flex-col h-full hover:shadow-xl transition-all duration-300">
               <div className="relative aspect-video w-full bg-gray-100 overflow-hidden border-b border-gray-200">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute top-4 left-4 z-10">
                   <Badge variant="news" className="bg-brand-orange text-white text-[12px]">{item.category}</Badge>
@@ -59,8 +38,8 @@ export function LatestNews() {
                 </h4>
                 <p className="text-gray-500 text-[14px] leading-relaxed mb-4 flex-1">{item.excerpt}</p>
                 <div className="mt-auto">
-                  <Link href={item.href} className="text-brand-orange font-semibold text-sm hover:text-brand-gold transition-colors inline-flex items-center">
-                    Read More <span className="ml-1">→</span>
+                  <Link href={`/news/${item.slug}`} className="text-brand-orange font-semibold text-sm hover:text-brand-gold transition-colors inline-flex items-center">
+                    Read More <span className="ml-1">-&gt;</span>
                   </Link>
                 </div>
               </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Heart, Users, BookOpen, Brain, Target, Shield } from 'lucide-react';
-import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { Linkedin } from '@/components/ui/SocialIcons';
@@ -78,15 +77,15 @@ export default function AboutPage() {
                 Established in 2024, Acholi Women in Health Foundation (AWIHF) was founded in response to the persistent and disproportionate health challenges facing women and girls in the post-conflict Acholi sub-region of Northern Uganda.
               </p>
               <p className="text-[16px] leading-[1.6] text-[#111111]">
-                Two decades of Lord's Resistance Army (LRA) insurgency left behind mass displacement, widespread gender-based violence, and a decimated public health infrastructure. With maternal mortality figures at 106.0 per 100,000 live births (compared to 69.1 nationally) and a 24% teenage pregnancy rate in rural areas, AWIHF exists to close the gaps that peace has not yet closed. We bring healthcare services directly to community hubs while strengthening systems for long-term health equity.
+                Two decades of Lord&apos;s Resistance Army (LRA) insurgency left behind mass displacement, widespread gender-based violence, and a decimated public health infrastructure. With maternal mortality figures at 106.0 per 100,000 live births (compared to 69.1 nationally) and a 24% teenage pregnancy rate in rural areas, AWIHF exists to close the gaps that peace has not yet closed. We bring healthcare services directly to community hubs while strengthening systems for long-term health equity.
               </p>
             </div>
-            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-gray-100 shadow-md">
+            <div className="relative aspect-video w-full rounded-xl overflow-hidden bg-white shadow-md border border-gray-100">
               <Image 
-                src="/images/lucky.webp" 
-                alt="AWIHF community health outreach" 
+                src="/images/AWIHF logo.webp" 
+                alt="Acholi Women in Health Foundation logo" 
                 fill 
-                className="object-cover" 
+                className="object-contain p-8 md:p-12" 
               />
             </div>
           </div>
@@ -102,7 +101,7 @@ export default function AboutPage() {
                 <Target className="w-6 h-6 text-brand-orange" /> Our Mission
               </h3>
               <p className="text-[#111111] text-[16px] leading-[1.6] italic">
-                "To improve healthcare outcomes of women and girls in northern Uganda through delivery of accessible community-based health services, building a community of empowered women in healthcare through mentorship, education and research."
+                &quot;To improve healthcare outcomes of women and girls in northern Uganda through delivery of accessible community-based health services, building a community of empowered women in healthcare through mentorship, education and research.&quot;
               </p>
             </div>
             <div className="p-8 border-[1.5px] border-brand-brown rounded-xl bg-white shadow-sm">
@@ -110,7 +109,7 @@ export default function AboutPage() {
                 <Shield className="w-6 h-6 text-brand-orange" /> Our Vision
               </h3>
               <p className="text-[#111111] text-[16px] leading-[1.6] italic">
-                "A community where women and girls are able to access equitable and holistic healthcare services, and where women in healthcare are valued, supported and empowered to lead, innovate and deliver high-quality care that addresses the unique needs of individuals and community."
+                &quot;A community where women and girls are able to access equitable and holistic healthcare services, and where women in healthcare are valued, supported and empowered to lead, innovate and deliver high-quality care that addresses the unique needs of individuals and community.&quot;
               </p>
             </div>
           </div>
@@ -156,12 +155,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
             {team.map((member, i) => (
               <Card key={i} className="p-6 md:p-8 flex flex-col items-center text-center bg-white shadow-sm border border-gray-200 rounded-2xl hover:shadow-lg transition-all duration-300">
-                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden mb-6 border-4 border-orange-tint shadow-inner">
+                <div className="relative w-full max-w-[240px] aspect-[4/5] rounded-xl overflow-hidden mb-6 border border-orange-tint bg-gray-50 shadow-sm">
                   <Image 
                     src={member.image} 
                     alt={member.name} 
                     fill 
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <h4 className="text-[22px] font-bold text-brand-brown mb-1">{member.name}</h4>

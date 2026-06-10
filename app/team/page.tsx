@@ -66,7 +66,7 @@ export default function TeamPage() {
         <div className="content-container text-center max-w-2xl mx-auto">
           <h2 className="text-[30px] font-semibold text-brand-brown mb-4">Join Our Team</h2>
           <p className="text-[#111111] text-[18px] leading-[1.6] mb-8">
-            We are always looking for passionate volunteers, medical professionals, and partners who share our vision for a healthier Northern Uganda.
+            We are always looking for passionate volunteers and medical professionals who share our vision for a healthier Northern Uganda.
           </p>
           <Link href="/contact">
             <Button variant="secondary" size="medium">Get In Touch</Button>

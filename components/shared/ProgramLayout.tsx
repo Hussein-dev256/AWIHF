@@ -1,44 +1,40 @@
 import React from 'react';
 import Image from 'next/image';
-import { Badge } from '../ui/Badge';
 import { DonateCTA } from '../sections/DonateCTA';
 import { CheckCircle, Target, Users, Settings } from 'lucide-react';
 
 interface ProgramLayoutProps {
   title: string;
-  badgeLabel: string;
   heroImage: string;
+  fieldImage: string;
   stats: { value: string; label: string }[];
   objective: string;
   focusArea: string;
   activities: string[];
   successIndicators: string[];
   description: React.ReactNode;
-  galleryImages: string[];
 }
 
 export function ProgramLayout({ 
   title, 
-  badgeLabel, 
   heroImage, 
+  fieldImage,
   stats, 
   objective, 
   focusArea, 
   activities, 
   successIndicators, 
-  description, 
-  galleryImages 
+  description
 }: ProgramLayoutProps) {
   return (
     <>
       {/* Hero */}
       <section className="relative w-full min-h-[320px] md:min-h-[400px] flex items-center justify-center px-4 md:px-8">
         <div className="absolute inset-0 z-0">
-          <Image src={heroImage} alt={title} fill className="object-cover" priority />
-          <div className="absolute inset-0 bg-brand-brown/70" />
+          <Image src={heroImage} alt={`${title} programme hero image`} fill className="object-cover object-center" priority />
+          <div className="absolute inset-0 bg-brand-brown/62" />
         </div>
         <div className="relative z-10 text-center max-w-3xl flex flex-col items-center">
-          <Badge variant="news" className="mb-4 bg-brand-orange text-white">{badgeLabel}</Badge>
           <h1 className="text-white text-3xl md:text-[40px] font-bold leading-[1.2]">{title}</h1>
         </div>
       </section>
@@ -75,7 +71,7 @@ export function ProgramLayout({
               </div>
               <h3 className="text-[20px] font-semibold text-brand-brown mb-3">Core Objective</h3>
               <p className="text-[#111111] text-[16px] leading-relaxed italic">
-                "{objective}"
+                {objective}
               </p>
             </div>
           </div>
@@ -144,21 +140,28 @@ export function ProgramLayout({
         </div>
       </section>
 
-      {/* Gallery */}
+      {/* Field Activity */}
       <section className="section-wrapper bg-gray-50">
         <div className="content-container">
-          <h2 className="section-heading text-center mb-10">In the Field</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {galleryImages.map((img, i) => (
-              <div key={i} className="relative aspect-square md:aspect-[4/3] rounded-xl overflow-hidden group shadow-sm border border-gray-200">
-                <Image 
-                  src={img} 
-                  alt={`Field image ${i+1} representing ${title}`} 
-                  fill 
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-5">
+              <span className="text-brand-orange font-semibold text-xs tracking-wider uppercase mb-2 block">Field Activity</span>
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-brown mb-4">Programme in Practice</h2>
+              <p className="text-gray-600 text-[16px] leading-[1.7]">
+                A field image from this programme, included to show real implementation activity without relying on unrelated filler photography.
+              </p>
+            </div>
+            <div className="lg:col-span-7">
+              <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-white shadow-sm border border-gray-200">
+                <Image
+                  src={fieldImage}
+                  alt={`${title} field activity`}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1024px) 100vw, 720px"
                 />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

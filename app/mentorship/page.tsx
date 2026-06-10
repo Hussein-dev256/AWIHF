@@ -41,7 +41,7 @@ export default function MentorshipPage() {
             {status === 'success' ? (
               <div className="bg-green-tint text-brand-green p-4 rounded-lg flex items-center justify-center space-x-2">
                 <CheckCircle className="w-5 h-5" />
-                <span className="font-medium">Thanks! We'll notify you when it launches.</span>
+                <span className="font-medium">Thanks! We&apos;ll notify you when it launches.</span>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">

@@ -1,27 +1,42 @@
 import { Hero } from '@/components/sections/Hero';
 import { AboutSummary } from '@/components/sections/AboutSummary';
 import { ProgramsGrid } from '@/components/sections/ProgramsGrid';
-import { ImpactStrip } from '@/components/sections/ImpactStrip';
-import { LatestNews } from '@/components/sections/LatestNews';
 import { Spotlight } from '@/components/sections/Spotlight';
+import { ImpactSection } from '@/components/sections/ImpactSection';
 import { Testimonials } from '@/components/sections/Testimonials';
-import { Partners } from '@/components/sections/Partners';
+import { LatestNews } from '@/components/sections/LatestNews';
+import { GetInvolvedCTA } from '@/components/sections/GetInvolvedCTA';
 import { DonateCTA } from '@/components/sections/DonateCTA';
-import { NewsletterSignup } from '@/components/sections/NewsletterSignup';
 
 export default function Home() {
   return (
     <>
+      {/* 1. Introduce the organization */}
       <Hero />
+
+      {/* 2. Explain who they are */}
       <AboutSummary />
+
+      {/* 3. Explain what they do */}
       <ProgramsGrid />
-      <ImpactStrip />
-      <LatestNews />
+
+      {/* 4. Programme in action — subsection of Programs */}
       <Spotlight />
+
+      {/* 5. Show measurable results */}
+      <ImpactSection />
+
+      {/* 6. Impact evidence — stories from beneficiaries */}
       <Testimonials />
-      <Partners />
+
+      {/* 7. Updates and current activities */}
+      <LatestNews />
+
+      {/* 8. Engagement opportunities */}
+      <GetInvolvedCTA />
+
+      {/* 9. Final call to action */}
       <DonateCTA />
-      <NewsletterSignup />
     </>
   );
 }

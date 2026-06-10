@@ -10,8 +10,6 @@ const links = [
   { name: 'Programs', href: '/programs' },
   { name: 'Impact', href: '/impact' },
   { name: 'News', href: '/news' },
-  { name: 'Stories', href: '/stories' },
-  { name: 'Partners', href: '/partners' },
   { name: 'Get Involved', href: '/get-involved' },
   { name: 'Contact', href: '/contact' },
 ];

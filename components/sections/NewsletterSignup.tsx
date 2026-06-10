@@ -31,7 +31,7 @@ export function NewsletterSignup() {
         {status === 'success' ? (
           <div className="w-full bg-green-tint text-brand-green p-4 rounded-lg flex items-center justify-center space-x-2">
             <CheckCircle className="w-5 h-5" />
-            <span className="font-medium">Thank you — you're subscribed!</span>
+            <span className="font-medium">Thank you - you&apos;re subscribed!</span>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="w-full flex flex-col md:flex-row gap-3">

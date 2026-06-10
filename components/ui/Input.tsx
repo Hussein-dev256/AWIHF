@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
-import { AlertCircle, CheckCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;

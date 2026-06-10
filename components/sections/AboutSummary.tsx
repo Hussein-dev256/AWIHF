@@ -60,7 +60,7 @@ export function AboutSummary() {
               </div>
               <h3 className="text-[20px] font-bold text-brand-brown mb-3">Our Vision</h3>
               <p className="text-brand-brown text-[15px] leading-[1.6] italic relative z-10 font-medium">
-                "A community where women and girls are able to access equitable and holistic healthcare services."
+                &quot;A community where women and girls are able to access equitable and holistic healthcare services.&quot;
               </p>
             </div>
           </div>

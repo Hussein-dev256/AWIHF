@@ -2,11 +2,23 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { ProgramLayout } from '@/components/shared/ProgramLayout';
 
-const programsData: Record<string, any> = {
+type ProgramData = {
+  title: string;
+  heroImage: string;
+  fieldImage: string;
+  stats: { value: string; label: string }[];
+  objective: string;
+  focusArea: string;
+  activities: string[];
+  successIndicators: string[];
+  description: React.ReactNode;
+};
+
+const programsData: Record<string, ProgramData> = {
   'maternal-reproductive-health': {
     title: 'Maternal & Reproductive Health',
-    badgeLabel: 'Core Program',
-    heroImage: '/images/lucky.webp',
+    heroImage: '/images/AWIHF-maternal-Hero.webp',
+    fieldImage: '/images/AWIHF-maternal-Field.webp',
     stats: [
       { value: '1,000+', label: 'Households Reached' },
       { value: '500+', label: 'Teenage Mothers Supported' },
@@ -30,19 +42,18 @@ const programsData: Record<string, any> = {
     description: (
       <div className="space-y-6">
         <p>
-          Acholi Women in Health Foundation (AWIHF)'s Maternal & Reproductive Health program is a community-rooted response to the critical maternal healthcare deficit in Northern Uganda. The post-conflict status of the region has left healthcare infrastructure fragmented, resulting in an Acholi sub-region maternal mortality rate of 106.0 per 100,000 live births—vastly exceeding the national average of 69.1.
+          Acholi Women in Health Foundation (AWIHF)&apos;s Maternal & Reproductive Health program is a community-rooted response to the critical maternal healthcare deficit in Northern Uganda. The post-conflict status of the region has left healthcare infrastructure fragmented, resulting in an Acholi sub-region maternal mortality rate of 106.0 per 100,000 live births—vastly exceeding the national average of 69.1.
         </p>
         <p>
-          We operate direct grassroots interventions, bringing skilled birth attendance counseling, family planning education, and pregnancy care packages directly to community health hubs in rural sub-counties. Through peer support networks and local clinic partnerships, we advocate for safe motherhood and dignity at every birth.
+          We operate direct grassroots interventions, bringing skilled birth attendance counseling, family planning education, and pregnancy care packages directly to community health hubs in rural sub-counties. Through peer support networks and local health-center referral relationships, we advocate for safe motherhood and dignity at every birth.
         </p>
       </div>
     ),
-    galleryImages: ['/images/lucky.webp', '/images/stephen.webp', '/images/lucky.webp']
   },
   'mental-health-trauma-support': {
     title: 'Mental Health & Trauma Support',
-    badgeLabel: 'Core Program',
-    heroImage: '/images/stephen.webp',
+    heroImage: '/images/AWIHF-MH-Hero.webp',
+    fieldImage: '/images/AWIHF-MH-Field.webp',
     stats: [
       { value: '500+', label: 'Teen Mothers Supported' },
       { value: '3+', label: 'Referral Hubs Target' },
@@ -73,12 +84,11 @@ const programsData: Record<string, any> = {
         </p>
       </div>
     ),
-    galleryImages: ['/images/stephen.webp', '/images/lucky.webp', '/images/stephen.webp']
   },
   'community-health-education': {
     title: 'Community Health Education',
-    badgeLabel: 'Core Program',
-    heroImage: '/images/lucky.webp',
+    heroImage: '/images/AWIHF-CHE-Hero.webp',
+    fieldImage: '/images/AWIHF-CHE-Field.webp',
     stats: [
       { value: '1,000+', label: 'Households Reached' },
       { value: '200+', label: 'Peer Educators Trained' },
@@ -105,20 +115,19 @@ const programsData: Record<string, any> = {
           Knowledge is the first and strongest line of defense in community healthcare. In rural Gulu City and its surrounding areas, limited health literacy and cultural taboos leave women and young girls highly vulnerable to preventable conditions.
         </p>
         <p>
-          AWIHF's Community Health Education program empowers individuals through accessible, localized health literacy campaigns. We focus heavily on peer-to-peer training, allowing young women to act as community advocates. By providing critical tools—including cervical cancer education and reusable sanitary pads—we ensure girls can stay in school and protect their health with dignity.
+          AWIHF&apos;s Community Health Education program empowers individuals through accessible, localized health literacy campaigns. We focus heavily on peer-to-peer training, allowing young women to act as community advocates. By providing critical tools—including cervical cancer education and reusable sanitary pads—we ensure girls can stay in school and protect their health with dignity.
         </p>
       </div>
     ),
-    galleryImages: ['/images/lucky.webp', '/images/stephen.webp', '/images/lucky.webp']
   },
   'healthcare-systems-strengthening': {
     title: 'Healthcare Systems Strengthening',
-    badgeLabel: 'Core Program',
-    heroImage: '/images/stephen.webp',
+    heroImage: '/images/AWIHF-HSS-Hero.webp',
+    fieldImage: '/images/AWIHF-HSS-Field.webp',
     stats: [
       { value: '1,000+', label: 'CHWs Equipped Target' },
       { value: '50+', label: 'Healthcare Students Mentored' },
-      { value: '2+', label: 'Strategic Partnerships Formed' },
+      { value: '2+', label: 'Referral Pathways Advanced' },
     ],
     objective: "To build a capable pipeline of local healthcare professionals and equip community networks to ensure long-term, resilient healthcare infrastructure.",
     focusArea: "Community Health Workers (CHWs), medical and nursing students nationwide, and local public health facilities in Gulu District.",
@@ -126,26 +135,25 @@ const programsData: Record<string, any> = {
       "Conducting skill-strengthening and leadership workshops for frontline healthcare workers.",
       "Establishing a national mentorship program connecting healthcare student professionals with mentors.",
       "Equipping Community Health Workers with tools and clinical guidelines for maternal health.",
-      "Forging strategic collaborations with municipal health authorities and Gulu referral hospitals.",
+      "Coordinating with municipal health authorities and Gulu referral hospitals.",
       "Conducting operational research to generate evidence informing local healthcare advocacy."
     ],
     successIndicators: [
       "50+ healthcare student professionals equipped nationwide with practical clinical and leadership skills.",
       "1,000 Community Health Workers mapped for 2026 maternal care and referral pathway trainings.",
-      "2+ strategic institutional partnerships formed to align public health interventions.",
+      "2+ referral and coordination pathways advanced to align public health interventions.",
       "Robust baseline data generated to support evidence-based regional healthcare advocacy."
     ],
     description: (
       <div className="space-y-6">
         <p>
-          A sustainable health system depends entirely on the capacity of its workforce. Decades of conflict severely decimated Northern Uganda's health facilities, leaving a significant shortage of skilled personnel and inadequate capacity at the frontline.
+          A sustainable health system depends entirely on the capacity of its workforce. Decades of conflict severely decimated Northern Uganda&apos;s health facilities, leaving a significant shortage of skilled personnel and inadequate capacity at the frontline.
         </p>
         <p>
           Through our Healthcare Systems Strengthening program, AWIHF addresses this structural gap. We focus on empowering Community Health Workers (CHWs) and establishing a national mentorship network for healthcare students. By supporting medical students and connecting them with experienced mentors, we build a pipeline of future women leaders in healthcare ready to innovate and deliver high-quality community care.
         </p>
       </div>
     ),
-    galleryImages: ['/images/stephen.webp', '/images/lucky.webp', '/images/stephen.webp']
   }
 };
 

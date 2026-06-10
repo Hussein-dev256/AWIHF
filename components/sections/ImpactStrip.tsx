@@ -10,7 +10,7 @@ export function ImpactStrip() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           <StatCard endValue={1000} suffix="+" label="Households Reached" />
           <StatCard endValue={50} suffix="+" label="Healthcare Students Equipped" />
-          <StatCard endValue={2} suffix="+" label="Strategic Partnerships" />
+          <StatCard endValue={4} label="Core Programme Areas" />
           <StatCard endValue={3} label="Programme Phases Completed" />
         </div>
       </div>

@@ -79,7 +79,7 @@ export default function AdminDashboard() {
                       <td className="p-4">{row === 1 ? <Badge variant="admin-new">New</Badge> : <span className="text-gray-500">Read</span>}</td>
                       <td className="p-4 font-medium text-[#111111]">Jane Doe</td>
                       <td className="p-4 text-gray-600">jane@example.com</td>
-                      <td className="p-4 text-[#111111]">Partnership Inquiry</td>
+                      <td className="p-4 text-[#111111]">Support Inquiry</td>
                       <td className="p-4 text-gray-500">Oct 24, 2025</td>
                     </tr>
                   ))}

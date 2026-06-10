@@ -7,11 +7,21 @@ import { Button } from '@/components/ui/Button';
 import { ArrowLeft, Calendar, User, Clock, Heart } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 
-const storiesData: Record<string, any> = {
+type StoryData = {
+  title: string;
+  category: string;
+  image: string;
+  author: string;
+  date: string;
+  readTime: string;
+  content: string[];
+};
+
+const storiesData: Record<string, StoryData> = {
   'safe-motherhood-patiko': {
     title: "Hope & Safe Delivery in Patiko Sub-County",
     category: "Maternal Health",
-    image: "/images/lucky.webp",
+    image: "/images/AWIHF-Patiko.webp",
     author: "AWIHF Outreach Team",
     date: "July 15, 2025",
     readTime: "3 min read",
@@ -24,7 +34,7 @@ const storiesData: Record<string, any> = {
   'healing-trauma-gulu': {
     title: "Rebuilding Mental Wellness After Conflict",
     category: "Mental Health",
-    image: "/images/stephen.webp",
+    image: "/images/AWIHF-MH-Field.webp",
     author: "Psychosocial Support Team",
     date: "October 10, 2025",
     readTime: "4 min read",
@@ -37,7 +47,7 @@ const storiesData: Record<string, any> = {
   'dignity-hygiene-education': {
     title: "Dignity in Education: Empowering Schoolgirls",
     category: "Health Education",
-    image: "/images/lucky.webp",
+    image: "/images/AWIHF-CHE-Field.webp",
     author: "Education Coordinator",
     date: "September 8, 2025",
     readTime: "3 min read",
@@ -66,7 +76,7 @@ export default async function StoryDetailPage(props: { params: Promise<{ slug: s
       {/* Navigation breadcrumb */}
       <div className="w-full bg-white border-b border-gray-100 py-4 px-4 md:px-8">
         <div className="max-w-4xl mx-auto flex items-center justify-between text-sm text-gray-500">
-          <Link href="/stories" className="flex items-center gap-2 hover:text-brand-orange transition-colors font-medium">
+          <Link href="/impact#stories" className="flex items-center gap-2 hover:text-brand-orange transition-colors font-medium">
             <ArrowLeft className="w-4 h-4" /> Back to Success Stories
           </Link>
           <div className="flex items-center gap-1 text-brand-green font-semibold uppercase tracking-wider text-xs">
@@ -113,7 +123,7 @@ export default async function StoryDetailPage(props: { params: Promise<{ slug: s
 
           {/* Share / Back footer */}
           <div className="border-t border-gray-100 pt-8 mt-12 flex items-center justify-between">
-            <Link href="/stories">
+            <Link href="/impact#stories">
               <Button variant="secondary" size="medium">
                 All Stories
               </Button>

@@ -22,7 +22,7 @@ export default function ContactPage() {
         <div className="text-center">
           <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2] mb-4">Contact Us</h1>
           <p className="text-white/80 text-[18px]">
-            We'd love to hear from you. Get in touch with our team.
+            We&apos;d love to hear from you. Get in touch with our team.
           </p>
         </div>
       </section>
@@ -91,7 +91,7 @@ export default function ContactPage() {
                       <CheckCircle className="w-8 h-8" />
                     </div>
                     <h3 className="text-[20px] font-bold text-brand-brown mb-2">Message Sent</h3>
-                    <p className="text-gray-600">Your message has been sent. We'll be in touch soon.</p>
+                    <p className="text-gray-600">Your message has been sent. We&apos;ll be in touch soon.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -13,8 +13,6 @@ const links = [
   { name: 'Programs', href: '/programs' },
   { name: 'Impact', href: '/impact' },
   { name: 'News', href: '/news' },
-  { name: 'Stories', href: '/stories' },
-  { name: 'Partners', href: '/partners' },
   { name: 'Get Involved', href: '/get-involved' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -22,11 +20,6 @@ const links = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
 
   return (
     <>
@@ -80,7 +73,7 @@ export function Navbar() {
         className={`fixed inset-0 z-[60] bg-brand-brown transform transition-transform duration-250 ease-in-out md:hidden flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         <div className="h-14 px-4 flex items-center justify-between border-b border-white/10">
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
             <Image 
               src="/images/AWIHF logo.webp" 
               alt="Acholi Women in Health Foundation Logo" 
@@ -105,6 +98,7 @@ export function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.href}
+                onClick={() => setIsOpen(false)}
                 className={`text-lg font-medium py-2 pl-4 transition-colors ${isActive ? 'text-brand-orange border-l-2 border-brand-orange' : 'text-white hover:text-brand-gold'}`}
               >
                 {link.name}
@@ -113,7 +107,7 @@ export function Navbar() {
           })}
         </div>
         <div className="p-4 border-t border-white/10">
-          <Link href="/donate" className="block w-full">
+          <Link href="/donate" className="block w-full" onClick={() => setIsOpen(false)}>
             <Button variant="primary" size="medium" className="w-full">Donate Now</Button>
           </Link>
         </div>
