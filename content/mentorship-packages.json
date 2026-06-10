@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Basic Package",
+    "description": "Entry-level mentorship access for eligible applicants.",
+    "features": ["General mentorship guidance", "Career orientation support"],
+    "price": "Free",
+    "eligibility": "Open to eligible healthcare students and early-career participants."
+  },
+  {
+    "name": "Standard Package",
+    "description": "Semester-based mentorship support.",
+    "features": ["Structured mentorship", "Academic and career guidance"],
+    "price": "UGX 25,000 per semester",
+    "eligibility": "Open to accepted mentorship applicants."
+  },
+  {
+    "name": "Clinical Package",
+    "description": "Clinical mentorship support for healthcare trainees.",
+    "features": ["Clinical guidance", "Professional development support"],
+    "price": "UGX 25,000 per semester",
+    "eligibility": "Recommended for clinical healthcare students."
+  },
+  {
+    "name": "Premium Package",
+    "description": "Comprehensive mentorship cycle support.",
+    "features": ["Extended mentorship cycle", "Leadership development support"],
+    "price": "UGX 150,000 per cycle",
+    "eligibility": "Open to applicants seeking comprehensive mentorship."
+  },
+  {
+    "name": "One-on-One Mentorship",
+    "description": "Focused individual mentorship session.",
+    "features": ["Individual mentorship session", "Personalized guidance"],
+    "price": "UGX 50,000 per session",
+    "eligibility": "Available by approved session request."
+  }
+]

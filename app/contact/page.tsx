@@ -8,12 +8,33 @@ import { Input, Textarea } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
-    setTimeout(() => setStatus('success'), 1500);
+    setErrorMessage('');
+
+    const formData = new FormData(e.currentTarget);
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+      }),
+    });
+
+    if (!response.ok) {
+      setStatus('error');
+      setErrorMessage('Your message could not be sent right now. Please contact AWIHF directly by email or phone.');
+      return;
+    }
+
+    setStatus('success');
   };
 
   return (
@@ -95,10 +116,15 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
-                    <Input label="Full Name" required disabled={status === 'loading'} />
-                    <Input label="Email Address" type="email" required disabled={status === 'loading'} />
-                    <Input label="Subject" required disabled={status === 'loading'} />
-                    <Textarea label="Message" required disabled={status === 'loading'} />
+                    <Input name="fullName" label="Full Name" required disabled={status === 'loading'} />
+                    <Input name="email" label="Email Address" type="email" required disabled={status === 'loading'} />
+                    <Input name="subject" label="Subject" required disabled={status === 'loading'} />
+                    <Textarea name="message" label="Message" required disabled={status === 'loading'} />
+                    {status === 'error' && (
+                      <p className="rounded-lg bg-red-50 p-3 text-sm text-[#C0392B]" role="alert">
+                        {errorMessage}
+                      </p>
+                    )}
                     <Button type="submit" variant="primary" size="medium" className="w-full" isLoading={status === 'loading'}>
                       Send Message
                     </Button>

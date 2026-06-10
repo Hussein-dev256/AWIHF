@@ -3,29 +3,26 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { getDonationInfo } from '@/lib/content/donation';
 import { CheckCircle2, Phone, ShieldCheck } from 'lucide-react';
 
-const paymentOptions = [
-  {
-    name: 'MTN MoMoPay',
-    accent: 'bg-[#FFCC00]',
-    code: '[CODE TO BE PROVIDED]',
-  },
-  {
-    name: 'Airtel Pay',
-    accent: 'bg-[#FF0000]',
-    code: '[CODE TO BE PROVIDED]',
-  },
-];
+export default async function DonatePage() {
+  const donationInfo = await getDonationInfo();
+  const paymentOptions = [
+    {
+      name: 'MTN MoMoPay',
+      businessName: donationInfo.mtnBusinessName,
+      accent: 'bg-[#FFCC00]',
+      code: donationInfo.mtnMerchantCode,
+    },
+    {
+      name: 'Airtel Pay',
+      businessName: donationInfo.airtelBusinessName,
+      accent: 'bg-[#FF0000]',
+      code: donationInfo.airtelMerchantCode,
+    },
+  ];
 
-const steps = [
-  'Open your MTN MoMoPay or Airtel Money application.',
-  'Choose the option to pay by organization or merchant code.',
-  'Enter the AWIHF organization code shown on this page.',
-  'Confirm the amount and complete payment independently in your mobile money app.',
-];
-
-export default function DonatePage() {
   return (
     <>
       <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[260px] px-4 md:px-8">
@@ -55,6 +52,10 @@ export default function DonatePage() {
                 <div key={option.name} className="rounded-xl border border-gray-200 bg-gray-50 p-5">
                   <div className={`w-10 h-10 ${option.accent} rounded-full mb-4 shadow-sm`} />
                   <h3 className="text-lg font-bold text-brand-brown mb-2">{option.name}</h3>
+                  <p className="text-sm text-gray-500 mb-2">Business Name</p>
+                  <div className="rounded-lg bg-white border border-gray-200 px-4 py-3 font-semibold text-brand-brown mb-4">
+                    {option.businessName}
+                  </div>
                   <p className="text-sm text-gray-500 mb-2">Organization Code</p>
                   <div className="rounded-lg bg-white border border-gray-200 px-4 py-3 font-semibold text-brand-brown">
                     {option.code}
@@ -71,7 +72,7 @@ export default function DonatePage() {
               </div>
               <h3 className="text-xl font-bold text-brand-brown mb-4">How to Complete Your Donation</h3>
               <ol className="space-y-3">
-                {steps.map((step, index) => (
+                {donationInfo.instructions.map((step, index) => (
                   <li key={step} className="flex gap-3 text-sm text-gray-700 leading-relaxed">
                     <span className="w-6 h-6 rounded-full bg-brand-green text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
                       {index + 1}

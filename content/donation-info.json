@@ -1,0 +1,12 @@
+{
+  "mtnBusinessName": "[BUSINESS NAME TO BE PROVIDED]",
+  "mtnMerchantCode": "[CODE TO BE PROVIDED]",
+  "airtelBusinessName": "[BUSINESS NAME TO BE PROVIDED]",
+  "airtelMerchantCode": "[CODE TO BE PROVIDED]",
+  "instructions": [
+    "Open your MTN MoMoPay or Airtel Money application.",
+    "Choose the option to pay by organization or merchant code.",
+    "Enter the AWIHF organization code shown on this page.",
+    "Confirm the amount and complete payment independently in your mobile money app."
+  ]
+}

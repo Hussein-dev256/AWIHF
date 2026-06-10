@@ -1,4 +1,5 @@
 import newsSeed from '@/content/news.json';
+import { sanityFetch } from '@/lib/sanity/client';
 
 export type CmsNewsArticle = {
   slug: string;
@@ -29,7 +30,24 @@ function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
 }
 
 async function fetchNewsFromCms(): Promise<CmsNewsArticle[]> {
-  // Future Sanity integration should replace only this source function.
+  const sanityArticles = await sanityFetch<CmsNewsArticle[]>(`
+    *[_type == "newsArticle"] | order(publishedAt desc) {
+      title,
+      "slug": slug.current,
+      category,
+      "excerpt": summary,
+      "image": featuredImage.asset->url,
+      author,
+      "date": coalesce(publishedAt, _createdAt),
+      "readTime": coalesce(readTime, "3 min read"),
+      "content": body[].children[].text
+    }
+  `);
+
+  if (sanityArticles?.length) {
+    return sanityArticles;
+  }
+
   return newsSeed as CmsNewsArticle[];
 }
 

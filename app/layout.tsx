@@ -34,9 +34,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NGO',
+    name: 'Acholi Women in Health Foundation',
+    alternateName: 'AWIHF',
+    url: 'https://acholiwomeninhealth.org',
+    email: 'acholiwomeninhealth@gmail.com',
+    telephone: ['0762401363', '0772388143'],
+    address: {
+      '@type': 'PostalAddress',
+      postOfficeBoxNumber: '361606',
+      addressLocality: 'Gulu City',
+      addressRegion: 'Northern Uganda',
+      addressCountry: 'UG',
+    },
+    sameAs: [
+      'https://x.com/acholiwomeninhealth',
+      'https://instagram.com/acholiwomeninhealth',
+      'https://www.linkedin.com/in/acholi-women-in-health-foundation-57686235a/',
+    ],
+  };
+
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased bg-white flex flex-col min-h-screen`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-brand-brown">
           Skip to main content
         </a>

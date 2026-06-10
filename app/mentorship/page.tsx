@@ -1,73 +1,83 @@
-"use client";
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { CheckCircle } from 'lucide-react';
+import { MentorshipApplicationForm } from '@/components/mentorship/MentorshipApplicationForm';
+import { getApplicationWindow, getMentorshipPackages } from '@/lib/content/mentorship';
+import { CheckCircle2, GraduationCap } from 'lucide-react';
 
-/* 
- * TODO: This page is currently a placeholder.
- * It will be replaced with a full mentorship portal in a future version.
- */
-export default function MentorshipPage() {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setStatus('loading');
-    setTimeout(() => setStatus('success'), 1000);
-  };
+export default async function MentorshipPage() {
+  const [applicationWindow, mentorshipPackages] = await Promise.all([
+    getApplicationWindow(),
+    getMentorshipPackages(),
+  ]);
 
   return (
     <>
-      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[240px] px-4 md:px-8">
-        <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2]">Mentorship Programme</h1>
-      </section>
-
-      <section className="section-wrapper bg-gray-50 min-h-[50vh] flex items-center">
-        <div className="content-container w-full max-w-xl mx-auto">
-          <Card className="text-center p-8 md:p-12">
-            <div className="mb-6">
-              <Badge variant="coming-soon">Coming Soon</Badge>
-            </div>
-            <h2 className="text-[24px] font-semibold text-brand-brown mb-4">Mentorship Portal</h2>
-            <p className="text-[#111111] text-[18px] leading-[1.6] mb-8">
-              Connecting healthcare students and Community Health Workers across Uganda with experienced mentors.
-            </p>
-            
-            {status === 'success' ? (
-              <div className="bg-green-tint text-brand-green p-4 rounded-lg flex items-center justify-center space-x-2">
-                <CheckCircle className="w-5 h-5" />
-                <span className="font-medium">Thanks! We&apos;ll notify you when it launches.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  required
-                  disabled={status === 'loading'}
-                  placeholder="Enter your email address"
-                  className="flex-1 rounded-lg border border-gray-200 px-4 py-3 text-base text-[#111111] placeholder:text-gray-400 focus:outline-none focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 transition-colors duration-150 disabled:opacity-50"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  aria-label="Notify me when it launches"
-                />
-                <Button 
-                  type="submit" 
-                  size="medium"
-                  isLoading={status === 'loading'}
-                  className="w-full sm:w-auto bg-gray-500 text-white hover:bg-gray-600 border-none"
-                >
-                  Notify me
-                </Button>
-              </form>
-            )}
-          </Card>
+      <section className="w-full bg-gradient-brand flex items-center justify-center min-h-[260px] px-4 md:px-8">
+        <div className="text-center max-w-2xl">
+          <h1 className="text-white text-3xl md:text-[36px] font-bold leading-[1.2] mb-4">Mentorship Programme</h1>
+          <p className="text-white/85 text-[18px]">
+            Application-based mentorship for healthcare students and emerging community health leaders.
+          </p>
         </div>
       </section>
+
+      <section className="section-wrapper bg-gray-50">
+        <div className="content-container">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <Card className="lg:col-span-5 bg-white p-6 md:p-8">
+              <div className="w-12 h-12 rounded-xl bg-orange-tint text-brand-orange flex items-center justify-center mb-5">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+              <Badge
+                variant={applicationWindow.isOpen ? 'news' : 'coming-soon'}
+                className={applicationWindow.isOpen ? '!bg-brand-orange !text-white mb-4' : 'mb-4'}
+              >
+                {applicationWindow.isOpen ? 'Applications Open' : 'Applications Closed'}
+              </Badge>
+              <h2 className="text-[24px] font-bold text-brand-brown mb-3">{applicationWindow.cycleName}</h2>
+              <p className="text-gray-600 text-[16px] leading-[1.7] mb-6">
+                {applicationWindow.isOpen ? applicationWindow.openMessage : applicationWindow.closedMessage}
+              </p>
+            </Card>
+
+            <div className="lg:col-span-7">
+              <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-3 block">Mentorship Packages</span>
+              <h2 className="section-heading mb-8">Available Packages</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {mentorshipPackages.map((item) => (
+                  <Card key={item.name} className="p-6 bg-white border border-gray-200">
+                    <h3 className="text-xl font-bold text-brand-brown mb-2">{item.name}</h3>
+                    <p className="text-brand-orange font-semibold mb-3">{item.price}</p>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-5">{item.description}</p>
+                    <ul className="space-y-2 mb-5">
+                      {item.features.map((feature) => (
+                        <li key={feature} className="flex gap-2 text-sm text-gray-700">
+                          <CheckCircle2 className="w-4 h-4 text-brand-green shrink-0 mt-0.5" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="text-xs text-gray-500 leading-relaxed">{item.eligibility}</p>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {applicationWindow.isOpen && (
+        <section className="section-wrapper bg-white">
+          <div className="content-container max-w-4xl mx-auto">
+            <span className="text-brand-orange font-semibold text-sm tracking-wider uppercase mb-3 block">Apply Now</span>
+            <h2 className="section-heading mb-8">Mentorship Application</h2>
+            <Card className="p-6 md:p-8 bg-white border border-gray-200">
+              <MentorshipApplicationForm />
+            </Card>
+          </div>
+        </section>
+      )}
     </>
   );
 }
