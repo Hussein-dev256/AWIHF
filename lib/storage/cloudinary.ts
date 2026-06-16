@@ -13,7 +13,25 @@ export type UploadedFileMetadata = {
 type UploadOptions = {
   folder?: string;
   resourceType?: 'auto' | 'image' | 'raw';
+  publicId?: string;
 };
+
+const PDF_MIME_TYPE = 'application/pdf';
+const PDF_EXTENSION = '.pdf';
+export const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
+
+export function hashUploadOwner(email: string) {
+  return createHash('sha256').update(email.trim().toLowerCase()).digest('hex').slice(0, 8);
+}
+
+export function validatePdfUpload(file: File) {
+  const hasPdfExtension = file.name.toLowerCase().endsWith(PDF_EXTENSION);
+  if (file.type !== PDF_MIME_TYPE || !hasPdfExtension || file.size > MAX_UPLOAD_SIZE) {
+    return { ok: false as const, message: 'Please upload a PDF file under 5MB' };
+  }
+
+  return { ok: true as const };
+}
 
 function createSignature(params: Record<string, string | number>, apiSecret: string) {
   const signatureBase = Object.entries(params)
@@ -32,7 +50,11 @@ export async function uploadFileToCloudinary(file: File, options: UploadOptions 
   const folder = options.folder ?? env.CLOUDINARY_UPLOAD_FOLDER;
   const resourceType = options.resourceType ?? 'auto';
   const timestamp = Math.round(Date.now() / 1000);
-  const signature = createSignature({ folder, timestamp }, apiSecret);
+  const signatureParams: Record<string, string | number> = { folder, timestamp };
+  if (options.publicId) {
+    signatureParams.public_id = options.publicId;
+  }
+  const signature = createSignature(signatureParams, apiSecret);
 
   const formData = new FormData();
   formData.set('file', file);
@@ -40,6 +62,9 @@ export async function uploadFileToCloudinary(file: File, options: UploadOptions 
   formData.set('timestamp', String(timestamp));
   formData.set('folder', folder);
   formData.set('signature', signature);
+  if (options.publicId) {
+    formData.set('public_id', options.publicId);
+  }
 
   const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`, {
     method: 'POST',

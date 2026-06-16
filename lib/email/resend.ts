@@ -32,7 +32,22 @@ export async function sendEmail(message: SendEmailOptions) {
   return response.json();
 }
 
+export async function sendEmailSafely(message: SendEmailOptions) {
+  try {
+    await sendEmail(message);
+    return { ok: true as const };
+  } catch (error) {
+    console.error('Email send failed', error);
+    return { ok: false as const, error: 'Email send failed.' };
+  }
+}
+
 export async function notifyAdmin(message: EmailMessage) {
   const env = getEnv();
   return sendEmail({ ...message, to: env.AWIHF_ADMIN_EMAIL });
+}
+
+export async function notifyAdminSafely(message: EmailMessage) {
+  const env = getEnv();
+  return sendEmailSafely({ ...message, to: env.AWIHF_ADMIN_EMAIL });
 }

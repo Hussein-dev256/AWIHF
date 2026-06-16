@@ -18,7 +18,10 @@ export async function getDonationInfo(): Promise<DonationInfo> {
       airtelMerchantCode,
       instructions
     }
-  `);
+  `).catch((error) => {
+    console.error('Sanity donation fetch failed', error);
+    return null;
+  });
 
   return donationInfo ?? donationSeed;
 }

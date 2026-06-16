@@ -35,7 +35,7 @@ export type MentorshipApplicationRecord = {
   careerInterests: string;
   leadershipExperience?: string;
   additionalComments?: string;
-  cvFile: FileReference;
+  cvFile?: FileReference;
   transcriptFile?: FileReference;
   status?: ApplicationStatus;
   ipHash?: string;

@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { assertDatabaseConfigured, saveMentorshipApplication } from '@/lib/db/operations';
-import { notifyAdmin, sendEmail } from '@/lib/email/resend';
+import { saveMentorshipApplication } from '@/lib/db/operations';
+import { getApplicationWindow } from '@/lib/content/mentorship';
+import { notifyAdminSafely, sendEmailSafely } from '@/lib/email/resend';
 import { mentorshipConfirmationEmail, mentorshipNotificationEmail } from '@/lib/email/templates';
 import { getSubmissionContext } from '@/lib/http/submissionContext';
 import { sanitizeObject } from '@/lib/security/sanitize';
-import { uploadFileToCloudinary } from '@/lib/storage/cloudinary';
+import { hashUploadOwner, uploadFileToCloudinary, validatePdfUpload } from '@/lib/storage/cloudinary';
 import { mentorshipApplicationSchema } from '@/lib/validation/submissions';
-
-const MAX_UPLOAD_SIZE = 5 * 1024 * 1024;
 
 function getOptionalString(formData: FormData, key: string) {
   const value = formData.get(key);
@@ -19,20 +18,20 @@ function getRequiredFile(formData: FormData, key: string) {
   return value instanceof File && value.size > 0 ? value : null;
 }
 
-function validateUpload(file: File, label: string) {
-  if (file.size > MAX_UPLOAD_SIZE) {
-    throw new Error(`${label} must be 5MB or smaller.`);
-  }
-}
-
 export async function POST(request: NextRequest) {
   const context = await getSubmissionContext(request);
   if (!context.allowed) {
-    return NextResponse.json({ error: 'Too many submissions. Please try again later.' }, { status: 429 });
+    return NextResponse.json({ message: 'Too many submissions. Please try again later.' }, { status: 429 });
   }
 
   try {
-    await assertDatabaseConfigured();
+    const applicationWindow = await getApplicationWindow();
+    if (!applicationWindow.isOpen) {
+      return NextResponse.json(
+        { message: applicationWindow.closedMessage || 'Applications for the current mentorship cycle are currently closed. Please check back later.' },
+        { status: 409 }
+      );
+    }
 
     const formData = await request.formData();
     const payload = sanitizeObject({
@@ -52,26 +51,53 @@ export async function POST(request: NextRequest) {
 
     const result = mentorshipApplicationSchema.safeParse(payload);
     if (!result.success) {
-      return NextResponse.json({ error: 'Invalid application.', issues: result.error.flatten() }, { status: 400 });
+      return NextResponse.json({ message: 'Invalid application.', issues: result.error.flatten() }, { status: 400 });
     }
 
     const cvFile = getRequiredFile(formData, 'cv');
     if (!cvFile) {
-      return NextResponse.json({ error: 'CV or resume is required.' }, { status: 400 });
+      return NextResponse.json({ message: 'CV or resume is required.' }, { status: 400 });
     }
 
-    validateUpload(cvFile, 'CV');
+    const cvValidation = validatePdfUpload(cvFile);
+    if (!cvValidation.ok) {
+      return NextResponse.json({ message: cvValidation.message }, { status: 400 });
+    }
+
     const transcriptFile = getRequiredFile(formData, 'transcript');
     if (transcriptFile) {
-      validateUpload(transcriptFile, 'Academic transcript');
+      const transcriptValidation = validatePdfUpload(transcriptFile);
+      if (!transcriptValidation.ok) {
+        return NextResponse.json({ message: transcriptValidation.message }, { status: 400 });
+      }
     }
 
-    const cvUpload = await uploadFileToCloudinary(cvFile, { folder: 'awihf/mentorship/cv', resourceType: 'auto' });
+    const ownerHash = hashUploadOwner(result.data.email);
+    const uploadPrefix = `${Date.now()}_${ownerHash}`;
+    let uploadNote: string | undefined;
+    const cvUpload = await uploadFileToCloudinary(cvFile, {
+      folder: 'awihf/mentorship-applications/cv',
+      resourceType: 'raw',
+      publicId: uploadPrefix,
+    }).catch((error) => {
+      console.error('CV upload failed', error);
+      uploadNote = 'CV upload failed - follow up with applicant';
+      return undefined;
+    });
+
     const transcriptUpload = transcriptFile
-      ? await uploadFileToCloudinary(transcriptFile, { folder: 'awihf/mentorship/transcripts', resourceType: 'auto' })
+      ? await uploadFileToCloudinary(transcriptFile, {
+          folder: 'awihf/mentorship-applications/transcripts',
+          resourceType: 'raw',
+          publicId: `${uploadPrefix}_transcript`,
+        }).catch((error) => {
+          console.error('Transcript upload failed', error);
+          uploadNote = uploadNote ? `${uploadNote}; transcript upload failed` : 'Transcript upload failed - follow up with applicant';
+          return undefined;
+        })
       : undefined;
 
-    await saveMentorshipApplication({
+    const saved = await saveMentorshipApplication({
       ...result.data,
       cvFile: cvUpload,
       transcriptFile: transcriptUpload,
@@ -80,13 +106,28 @@ export async function POST(request: NextRequest) {
       userAgent: context.userAgent,
     });
 
-    const submittedAt = new Date().toISOString();
-    await notifyAdmin(mentorshipNotificationEmail(result.data, submittedAt));
-    await sendEmail({ ...mentorshipConfirmationEmail(result.data), to: result.data.email });
+    if (!saved.ok) {
+      return NextResponse.json({ message: 'Your application could not be saved right now.' }, { status: 500 });
+    }
 
-    return NextResponse.json({ ok: true });
+    const submittedAt = new Date().toISOString();
+    void notifyAdminSafely(
+      mentorshipNotificationEmail(result.data, {
+        applicationId: saved.data.id,
+        submittedAt,
+        cvUrl: cvUpload?.url,
+        transcriptUrl: transcriptUpload?.url,
+        uploadNote,
+      })
+    );
+    void sendEmailSafely({
+      ...mentorshipConfirmationEmail(result.data, { applicationId: saved.data.id }),
+      to: result.data.email,
+    });
+
+    return NextResponse.json({ success: true, applicationId: saved.data.id, message: 'Application received.' });
   } catch (error) {
     console.error('Mentorship application failed', error);
-    return NextResponse.json({ error: 'Application service is not fully configured.' }, { status: 503 });
+    return NextResponse.json({ message: 'Application service is not available right now.' }, { status: 500 });
   }
 }

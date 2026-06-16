@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { ArrowLeft, Calendar, User, Clock, Bookmark } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
+import { PortableTextRenderer } from '@/components/cms/PortableTextRenderer';
 import { getNewsPost, getNewsPosts } from '@/lib/content/news';
 
 type NewsDetailProps = {
@@ -89,11 +90,17 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
             />
           </div>
 
-          <div className="text-[#111111] text-[18px] leading-[1.7] space-y-6">
-            {article.content.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
-          </div>
+          {article.body?.length ? (
+            <div className="text-[#111111]">
+              <PortableTextRenderer value={article.body} />
+            </div>
+          ) : (
+            <div className="text-[#111111] text-[18px] leading-[1.7] space-y-6">
+              {article.content.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+          )}
 
           <div className="border-t border-gray-100 pt-8 mt-12 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
             <Link href="/news">

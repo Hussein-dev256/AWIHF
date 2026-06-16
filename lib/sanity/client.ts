@@ -1,44 +1,68 @@
+import { createClient, type ClientConfig, type QueryParams } from '@sanity/client';
 import { getEnv } from '@/lib/config/env';
 
-type SanityQueryParams = Record<string, string | number | boolean | null>;
+type SanityFetchOptions = {
+  preview?: boolean;
+  revalidate?: number;
+  tags?: string[];
+};
 
-function getSanityConfig() {
+function getSanityConfig(): ClientConfig | null {
   const env = getEnv();
-  if (!env.SANITY_PROJECT_ID) {
+  if (!env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
     return null;
   }
 
   return {
-    projectId: env.SANITY_PROJECT_ID,
-    dataset: env.SANITY_DATASET,
+    projectId: env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: env.NEXT_PUBLIC_SANITY_DATASET,
     apiVersion: env.SANITY_API_VERSION,
     token: env.SANITY_READ_TOKEN,
+    useCdn: false,
   };
 }
 
-export async function sanityFetch<T>(query: string, params: SanityQueryParams = {}): Promise<T | null> {
+export function isSanityConfigured() {
+  return Boolean(getSanityConfig());
+}
+
+export function getSanityClient(options: SanityFetchOptions = {}) {
   const config = getSanityConfig();
   if (!config) {
     return null;
   }
 
-  const searchParams = new URLSearchParams({ query });
-  for (const [key, value] of Object.entries(params)) {
-    if (value !== null) {
-      searchParams.set(`$${key}`, JSON.stringify(value));
-    }
-  }
-
-  const url = `https://${config.projectId}.api.sanity.io/v${config.apiVersion}/data/query/${config.dataset}?${searchParams.toString()}`;
-  const response = await fetch(url, {
-    headers: config.token ? { Authorization: `Bearer ${config.token}` } : undefined,
-    next: { revalidate: 60 },
+  return createClient({
+    ...config,
+    perspective: options.preview ? 'previewDrafts' : 'published',
   });
+}
 
-  if (!response.ok) {
-    throw new Error(`Sanity query failed with status ${response.status}`);
+async function getDraftModeState() {
+  try {
+    const { draftMode } = await import('next/headers');
+    const draft = await draftMode();
+    return draft.isEnabled;
+  } catch {
+    return false;
+  }
+}
+
+export async function sanityFetch<T>(
+  query: string,
+  params: QueryParams = {},
+  options: SanityFetchOptions = {}
+): Promise<T | null> {
+  const preview = options.preview ?? await getDraftModeState();
+  const client = getSanityClient({ ...options, preview });
+  if (!client) {
+    return null;
   }
 
-  const payload = await response.json() as { result: T };
-  return payload.result;
+  return client.fetch<T>(query, params, {
+    next: {
+      revalidate: options.revalidate ?? 60,
+      tags: options.tags ?? ['sanity'],
+    },
+  });
 }

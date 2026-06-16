@@ -26,7 +26,10 @@ export async function getMentorshipPackages(): Promise<MentorshipPackage[]> {
       price,
       eligibility
     }
-  `);
+  `).catch((error) => {
+    console.error('Sanity mentorship package fetch failed', error);
+    return null;
+  });
 
   return packages?.length ? packages : mentorshipPackageSeed;
 }
@@ -39,7 +42,10 @@ export async function getApplicationWindow(): Promise<ApplicationWindow> {
       openMessage,
       closedMessage
     }
-  `);
+  `).catch((error) => {
+    console.error('Sanity application window fetch failed', error);
+    return null;
+  });
 
   return windowConfig ?? applicationWindowSeed;
 }

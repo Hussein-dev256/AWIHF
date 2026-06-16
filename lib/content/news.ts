@@ -1,5 +1,6 @@
 import newsSeed from '@/content/news.json';
 import { sanityFetch } from '@/lib/sanity/client';
+import { imageUrl } from '@/lib/sanity/image';
 
 export type CmsNewsArticle = {
   slug: string;
@@ -7,13 +8,16 @@ export type CmsNewsArticle = {
   category: string;
   date: string;
   excerpt: string;
-  image: string;
+  image: string | Record<string, unknown>;
   author: string;
   readTime: string;
   content: string[];
+  body?: unknown[];
 };
 
-export type NewsPost = CmsNewsArticle;
+export type NewsPost = Omit<CmsNewsArticle, 'image'> & {
+  image: string;
+};
 
 function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
   return {
@@ -22,10 +26,11 @@ function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
     category: article.category,
     date: article.date,
     excerpt: article.excerpt,
-    image: article.image,
+    image: imageUrl(article.image, 1200, 675) || '/images/AWIHF-Patiko.webp',
     author: article.author,
     readTime: article.readTime,
     content: article.content,
+    body: article.body,
   };
 }
 
@@ -36,13 +41,17 @@ async function fetchNewsFromCms(): Promise<CmsNewsArticle[]> {
       "slug": slug.current,
       category,
       "excerpt": summary,
-      "image": featuredImage.asset->url,
+      "image": featuredImage,
       author,
       "date": coalesce(publishedAt, _createdAt),
       "readTime": coalesce(readTime, "3 min read"),
-      "content": body[].children[].text
+      body,
+      "content": coalesce(body[].children[].text, [])
     }
-  `);
+  `).catch((error) => {
+    console.error('Sanity news fetch failed', error);
+    return null;
+  });
 
   if (sanityArticles?.length) {
     return sanityArticles;

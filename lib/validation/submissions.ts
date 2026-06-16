@@ -5,7 +5,7 @@ const phoneSchema = z.string().min(7).max(30);
 export const contactSubmissionSchema = z.object({
   fullName: z.string().min(2).max(120),
   email: z.string().email().max(180),
-  subject: z.string().min(2).max(160),
+  subject: z.string().max(160).optional().default('Website inquiry'),
   message: z.string().min(10).max(5000),
 });
 

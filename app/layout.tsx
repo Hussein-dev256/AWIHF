@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { PreviewBanner } from "@/components/layout/PreviewBanner";
+import { draftMode } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -29,11 +31,12 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const draft = await draftMode();
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NGO',
@@ -66,6 +69,7 @@ export default function RootLayout({
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-brand-brown">
           Skip to main content
         </a>
+        {draft.isEnabled && <PreviewBanner />}
         <Navbar />
         <main id="main-content" className="flex-grow">{children}</main>
         <Footer />

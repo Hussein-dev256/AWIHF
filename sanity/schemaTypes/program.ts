@@ -15,5 +15,6 @@ export const program = {
     { name: 'successIndicators', title: 'Success Indicators', type: 'array', of: [{ type: 'string' }] },
     { name: 'stats', title: 'Statistics', type: 'array', of: [{ type: 'statItem' }] },
     { name: 'body', title: 'Detailed Content', type: 'array', of: [{ type: 'block' }] },
+    { name: 'seo', title: 'SEO Override', type: 'reference', to: [{ type: 'seoSettings' }] },
   ],
 };

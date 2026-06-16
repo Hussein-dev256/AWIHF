@@ -9,5 +9,7 @@ export const heroSection = {
     { name: 'image', title: 'Hero Image', type: 'image', options: { hotspot: true } },
     { name: 'primaryCtaLabel', title: 'Primary CTA Label', type: 'string' },
     { name: 'primaryCtaHref', title: 'Primary CTA URL', type: 'string' },
+    { name: 'secondaryCtaLabel', title: 'Secondary CTA Label', type: 'string' },
+    { name: 'secondaryCtaHref', title: 'Secondary CTA URL', type: 'string' },
   ],
 };

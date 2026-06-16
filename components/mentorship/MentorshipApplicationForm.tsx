@@ -21,8 +21,9 @@ export function MentorshipApplicationForm() {
     });
 
     if (!response.ok) {
+      const payload = await response.json().catch(() => null);
       setStatus('error');
-      setErrorMessage('Your application could not be submitted right now. Please try again later or contact AWIHF directly.');
+      setErrorMessage(payload?.message || 'Your application could not be submitted right now. Please try again later or contact AWIHF directly.');
       return;
     }
 
@@ -77,8 +78,8 @@ export function MentorshipApplicationForm() {
       <div>
         <h3 className="text-xl font-bold text-brand-brown mb-5">Uploads</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Input name="cv" label="CV/Resume" type="file" accept=".pdf,.doc,.docx" required disabled={status === 'loading'} />
-          <Input name="transcript" label="Academic Transcript (optional)" type="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" disabled={status === 'loading'} />
+          <Input name="cv" label="CV/Resume" type="file" accept="application/pdf,.pdf" required disabled={status === 'loading'} />
+          <Input name="transcript" label="Academic Transcript (optional)" type="file" accept="application/pdf,.pdf" disabled={status === 'loading'} />
         </div>
         <p className="text-sm text-gray-500 mt-3">Maximum file size: 5MB per upload.</p>
       </div>

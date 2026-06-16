@@ -11,5 +11,6 @@ export const impactStory = {
     { name: 'author', title: 'Author', type: 'string' },
     { name: 'publishedAt', title: 'Publish Date', type: 'datetime' },
     { name: 'body', title: 'Story Body', type: 'array', of: [{ type: 'block' }] },
+    { name: 'seo', title: 'SEO Override', type: 'reference', to: [{ type: 'seoSettings' }] },
   ],
 };

@@ -11,6 +11,7 @@ export const newsArticle = {
     { name: 'author', title: 'Author', type: 'string', validation: 'required' },
     { name: 'publishedAt', title: 'Publish Date', type: 'datetime', validation: 'required' },
     { name: 'body', title: 'Body Content', type: 'array', of: [{ type: 'block' }] },
+    { name: 'seo', title: 'SEO Override', type: 'reference', to: [{ type: 'seoSettings' }] },
     { name: 'seoTitle', title: 'SEO Title', type: 'string' },
     { name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 2 },
   ],
