@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/shared/PageHero';
 import { ProgramsGrid } from '@/components/sections/ProgramsGrid';
 import { DonateCTA } from '@/components/sections/DonateCTA';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Programs',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ProgramsPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Programs', path: '/programs' }]} />
       <PageHero
         title="Our Programmes"
         subtitle="Comprehensive, community-based health interventions designed to close the gaps that peace has not yet closed in Northern Uganda."

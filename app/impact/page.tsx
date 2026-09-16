@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { Testimonials } from '@/components/sections/Testimonials';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Impact',
@@ -204,6 +205,7 @@ export default function ImpactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Impact', path: '/impact' }]} />
       {/* Standardized Shared Hero Banner & Floating Statistics */}
       <PageHero
         title="Our Impact"

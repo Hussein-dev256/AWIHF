@@ -9,6 +9,7 @@ import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PartnershipsSection } from '@/components/sections/PartnershipsSection';
 import { Linkedin } from '@/components/ui/SocialIcons';
 import { leadershipTeam } from '@/lib/config/organization';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'About Acholi Women in Health Foundation',
@@ -61,6 +62,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'About', path: '/about' }]} />
       {/* Standardized Hero */}
       <PageHero
         title="About AWIHF"

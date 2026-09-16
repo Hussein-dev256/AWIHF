@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactPageClient } from '@/components/contact/ContactPageClient';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -10,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactPageClient />;
+  return (
+    <>
+      <BreadcrumbJsonLd items={[{ name: 'Contact', path: '/contact' }]} />
+      <ContactPageClient />
+    </>
+  );
 }

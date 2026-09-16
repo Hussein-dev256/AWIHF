@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { getDonationInfo } from '@/lib/content/donation';
 import { CheckCircle2, Phone, ShieldCheck } from 'lucide-react';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Donate',
@@ -37,6 +38,7 @@ export default async function DonatePage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Donate', path: '/donate' }]} />
       <PageHero
         title="Support Our Work"
         subtitle="Use our official mobile money organization codes to complete your donation securely from your own phone."

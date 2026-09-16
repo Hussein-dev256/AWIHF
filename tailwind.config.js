@@ -16,7 +16,7 @@ module.exports = {
         'gradient-brand': 'linear-gradient(135deg, #F76B1C 0%, #FFA82E 100%)',
         'gradient-brand-h': 'linear-gradient(90deg, #F76B1C 0%, #FFA82E 100%)',
       },
-      maxWidth: { content: '1200px' },
+      maxWidth: { content: '1120px' },
     },
   },
   plugins: [],

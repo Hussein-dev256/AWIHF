@@ -9,6 +9,8 @@ import { draftMode } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const siteUrl = organizationProfile.url;
+const logoSvgPath = "/images/AWIHF logo.svg";
+const logoWebpPath = "/images/AWIHF logo.webp";
 const coreNavigation = [
   { name: 'About', url: `${siteUrl}/about` },
   { name: 'Programs', url: `${siteUrl}/programs` },
@@ -42,19 +44,19 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/images/AWIHF logo.svg",
+        url: logoSvgPath,
         type: "image/svg+xml",
       },
     ],
     shortcut: [
       {
-        url: "/images/AWIHF logo.svg",
+        url: logoSvgPath,
         type: "image/svg+xml",
       },
     ],
     apple: [
       {
-        url: "/images/AWIHF logo.svg",
+        url: logoSvgPath,
       },
     ],
   },
@@ -97,7 +99,7 @@ export default async function RootLayout({
         name: organizationProfile.name,
         alternateName: organizationProfile.shortName,
         url: siteUrl,
-        logo: `${siteUrl}/images/AWIHF logo.webp`,
+        logo: `${siteUrl}${logoWebpPath}`,
         description: organizationProfile.description,
         slogan: organizationProfile.slogan,
         foundingDate: organizationProfile.foundingDate,
@@ -125,6 +127,7 @@ export default async function RootLayout({
         alternateName: organizationProfile.shortName,
         url: siteUrl,
         publisher: { '@id': `${siteUrl}/#organization` },
+        hasPart: coreNavigation.map((item) => ({ '@id': `${item.url}/#webpage` })),
       },
       {
         '@type': 'ItemList',
@@ -137,6 +140,16 @@ export default async function RootLayout({
           url: item.url,
         })),
       },
+      ...coreNavigation.map((item) => ({
+        '@type': 'WebPage',
+        '@id': `${item.url}/#webpage`,
+        url: item.url,
+        name: item.name,
+        isPartOf: { '@id': `${siteUrl}/#website` },
+        about: { '@id': `${siteUrl}/#organization` },
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'en',
+      })),
     ],
   };
 

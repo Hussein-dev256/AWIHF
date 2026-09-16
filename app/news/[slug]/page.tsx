@@ -79,25 +79,53 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
   const articleUrl = `${siteUrl}/news/${article.slug}`;
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'NewsArticle',
-    headline: article.title,
-    description,
-    image: [absoluteUrl(articleImage)],
-    datePublished: article.publishedAt || article.date,
-    dateModified: article.publishedAt || article.date,
-    mainEntityOfPage: articleUrl,
-    author: {
-      '@type': 'Organization',
-      name: article.author,
-    },
-    publisher: {
-      '@type': 'NGO',
-      name: organizationProfile.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: absoluteUrl('/images/AWIHF logo.webp'),
+    '@graph': [
+      {
+        '@type': 'NewsArticle',
+        headline: article.title,
+        description,
+        image: [absoluteUrl(articleImage)],
+        datePublished: article.publishedAt || article.date,
+        dateModified: article.publishedAt || article.date,
+        mainEntityOfPage: articleUrl,
+        isPartOf: `${siteUrl}/news`,
+        author: {
+          '@type': 'Organization',
+          name: article.author,
+        },
+        publisher: {
+          '@type': 'NGO',
+          name: organizationProfile.name,
+          logo: {
+            '@type': 'ImageObject',
+            url: absoluteUrl('/images/AWIHF logo.webp'),
+          },
+        },
       },
-    },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: 'Home',
+            item: siteUrl,
+          },
+          {
+            '@type': 'ListItem',
+            position: 2,
+            name: 'News',
+            item: `${siteUrl}/news`,
+          },
+          {
+            '@type': 'ListItem',
+            position: 3,
+            name: article.title,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (

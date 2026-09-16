@@ -71,11 +71,11 @@ export function PageHero({
 
         {/* Layer 1 (Top): 100% Opaque Hero Content */}
         <div className="relative z-10 text-center max-w-3xl mx-auto flex flex-col items-center justify-center">
-          <h1 className="text-white text-2xl md:text-[36px] lg:text-[40px] font-bold leading-[1.15] md:leading-[1.2] mb-2 md:mb-3">
+          <h1 className="text-white text-2xl md:text-[34px] lg:text-[38px] font-bold leading-[1.15] md:leading-[1.2] mb-2 md:mb-3">
             {title}
           </h1>
           {subtitle && (
-            <p className="text-white/90 text-sm md:text-[18px] leading-relaxed max-w-2xl mx-auto font-normal">
+            <p className="text-white/90 text-sm md:text-[17px] leading-relaxed max-w-2xl mx-auto font-normal">
               {subtitle}
             </p>
           )}

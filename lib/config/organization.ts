@@ -6,7 +6,7 @@ export const organizationProfile = {
     'Acholi Women in Health Foundation (AWIHF) is a women-led, community-rooted non-profit improving healthcare outcomes for women and girls in Gulu and the Acholi sub-region of Northern Uganda.',
   slogan: 'Empowering Women. Improving Health. Healing Lives, Transforming Communities.',
   foundingDate: '2023',
-  email: 'acholiwomeninhealth@gmail.com',
+  email: 'info@acholiwomeninhealth.org',
   phoneNumbers: ['0762401363', '0772388143'],
   postalAddress: {
     poBox: 'P.O. Box 361606',

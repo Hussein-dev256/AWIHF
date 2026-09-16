@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageHero } from '@/components/shared/PageHero';
 import { NewsSearchClient } from '@/components/news/NewsSearchClient';
 import { getNewsPosts } from '@/lib/content/news';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'News & Announcements',
@@ -17,6 +18,7 @@ export default async function NewsPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'News', path: '/news' }]} />
       <PageHero
         title="News & Announcements"
         subtitle="Stay updated with our official milestones, field reports, and program announcements."

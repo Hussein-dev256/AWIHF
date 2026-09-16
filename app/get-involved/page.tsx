@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { NewsletterSignup } from '@/components/sections/NewsletterSignup';
 import { Gift, MessageSquare, Award, FileText, CheckCircle2 } from 'lucide-react';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Get Involved',
@@ -45,6 +46,7 @@ export default function GetInvolvedPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: 'Get Involved', path: '/get-involved' }]} />
       <PageHero
         title="Get Involved"
         subtitle="Your time, voice, and support can change lives in Northern Uganda."
