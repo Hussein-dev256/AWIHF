@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 import { Reveal } from '@/components/motion/Reveal';
 
 export const metadata: Metadata = {
-  title: 'Impact',
+  title: 'Our Impact',
   description: 'Explore AWIHF impact across Northern Uganda, including households reached, healthcare students equipped, outreach milestones, programme phases, and community stories.',
   alternates: {
     canonical: '/impact',

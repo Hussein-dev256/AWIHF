@@ -10,13 +10,13 @@ import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PortableTextRenderer } from '@/components/cms/PortableTextRenderer';
 import { getNewsPost, getNewsPosts } from '@/lib/content/news';
 import { organizationProfile } from '@/lib/config/organization';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 type NewsDetailProps = {
   params: Promise<{ slug: string }>;
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://acholiwomeninhealth.org';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || organizationProfile.url;
 
 function absoluteUrl(pathOrUrl: string) {
   if (pathOrUrl.startsWith('http://') || pathOrUrl.startsWith('https://')) {
@@ -104,10 +104,10 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
 
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbJsonLd
         items={[
-          { name: 'News', href: '/news' },
-          { name: article.title, href: `/news/${article.slug}` },
+          { name: 'News', path: '/news' },
+          { name: article.title, path: `/news/${article.slug}` },
         ]}
       />
       <script

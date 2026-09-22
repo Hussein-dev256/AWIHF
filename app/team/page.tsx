@@ -6,9 +6,10 @@ import { PageHero } from '@/components/shared/PageHero';
 import { Linkedin } from '@/components/ui/SocialIcons';
 import { Button } from '@/components/ui/Button';
 import { leadershipTeam } from '@/lib/config/organization';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Team',
+  title: 'Our Leadership Team',
   description: 'Meet the AWIHF leadership team guiding women-led, community-rooted healthcare work in Gulu and across Northern Uganda.',
   alternates: {
     canonical: '/team',
@@ -18,6 +19,12 @@ export const metadata: Metadata = {
 export default function TeamPage() {
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'About', path: '/about' },
+          { name: 'Our Team', path: '/team' },
+        ]}
+      />
       <PageHero
         title="Our Team"
         subtitle="Meet the dedicated individuals driving our mission forward."

@@ -5,6 +5,7 @@ export type EmailMessage = {
   subject: string;
   html: string;
   text: string;
+  replyTo?: string;
 };
 
 type MentorshipEmailContext = {
@@ -74,6 +75,7 @@ function row(label: string, value: string | undefined) {
 export function contactNotificationEmail(input: ContactSubmissionInput, submittedAt = new Date().toISOString()): EmailMessage {
   return {
     subject: `New AWIHF contact message: ${input.subject}`,
+    replyTo: input.email,
     text: `New contact message from ${input.fullName} (${input.email}) at ${submittedAt}.\n\nSubject: ${input.subject}\n\n${input.message}`,
     html: layout(
       'New Contact Message',
@@ -117,6 +119,7 @@ export function mentorshipNotificationEmail(
 
   return {
     subject: `New mentorship application: ${input.fullName}`,
+    replyTo: input.email,
     text: `New mentorship application submitted by ${input.fullName} (${input.email}, ${input.phoneNumber}) at ${submittedAt}.\nReference: ${context.applicationId ?? 'Pending'}\nCV: ${context.cvUrl ?? 'Upload failed'}\nTranscript: ${context.transcriptUrl ?? 'Not provided or upload failed'}`,
     html: layout(
       'New Mentorship Application',

@@ -7,9 +7,10 @@ import { Card } from '@/components/ui/Card';
 import { MentorshipApplicationForm } from '@/components/mentorship/MentorshipApplicationForm';
 import { getApplicationWindow, getMentorshipPackages } from '@/lib/content/mentorship';
 import { CheckCircle2, GraduationCap, ArrowRight } from 'lucide-react';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Mentorship Programme',
+  title: 'Mentorship Programme Application',
   description: 'AWIHF mentorship connects healthcare students and emerging community health leaders with clinical mentors to strengthen women-led health leadership in Uganda.',
   alternates: {
     canonical: '/mentorship',
@@ -24,6 +25,13 @@ export default async function MentorshipPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: 'Programs', path: '/programs' },
+          { name: 'Mentorship Programme', path: '/programs/mentorship' },
+          { name: 'Application', path: '/mentorship' },
+        ]}
+      />
       <PageHero
         title="Mentorship Programme"
         subtitle="Application-based mentorship for healthcare students and emerging community health leaders."

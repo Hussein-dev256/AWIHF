@@ -7,8 +7,24 @@ type SendEmailOptions = EmailMessage & {
 };
 
 export async function sendEmail(message: SendEmailOptions) {
-  const apiKey = requireEnv('RESEND_API_KEY');
   const env = getEnv();
+  const apiKey = env.RESEND_API_KEY;
+
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY is not configured in environment variables.');
+  }
+
+  const payload: Record<string, unknown> = {
+    from: env.RESEND_FROM_EMAIL,
+    to: [message.to],
+    subject: message.subject,
+    html: message.html,
+    text: message.text,
+  };
+
+  if (message.replyTo) {
+    payload.reply_to = message.replyTo;
+  }
 
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
@@ -16,17 +32,12 @@ export async function sendEmail(message: SendEmailOptions) {
       Authorization: `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      from: env.RESEND_FROM_EMAIL,
-      to: [message.to],
-      subject: message.subject,
-      html: message.html,
-      text: message.text,
-    }),
+    body: JSON.stringify(payload),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
+    logger.error('resend.api_error', new Error(`Resend API rejected: ${response.status} ${errorText}`));
     throw new Error(`Resend email failed: ${response.status} ${errorText}`);
   }
 

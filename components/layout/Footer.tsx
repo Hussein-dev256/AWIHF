@@ -13,6 +13,7 @@ const links = [
   { name: 'News', href: '/news' },
   { name: 'Get Involved', href: '/get-involved' },
   { name: 'Contact', href: '/contact' },
+  { name: 'Donate', href: '/donate' },
 ];
 
 function formatUgandaPhone(value: string) {
@@ -98,7 +99,7 @@ export function Footer() {
 
         <div className="border-t border-white/20 pt-5 md:pt-8 mt-6 md:mt-8 text-center md:text-left">
           <p className="text-[12px] text-gray-400">
-            &copy; 2025 AWIHF |{' '}
+            &copy; {new Date().getFullYear()} AWIHF |{' '}
             <a
               href="https://mhussein.vercel.app/"
               target="_blank"

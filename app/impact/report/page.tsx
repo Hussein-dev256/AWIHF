@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { PageHero } from '@/components/shared/PageHero';
 import { getImpactReportContent } from '@/lib/content/impactReport';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
   title: 'Impact Report',
@@ -20,10 +20,10 @@ export default async function ImpactReportPage() {
 
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbJsonLd
         items={[
-          { name: 'Impact', href: '/impact' },
-          { name: 'Impact Report', href: '/impact/report' },
+          { name: 'Impact', path: '/impact' },
+          { name: 'Impact Report', path: '/impact/report' },
         ]}
       />
 

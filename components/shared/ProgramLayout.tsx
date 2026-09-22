@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { PageHero } from './PageHero';
 import { ProgrammeInPracticeGallery } from './ProgrammeInPracticeGallery';
 import { DonateCTA } from '../sections/DonateCTA';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 import { CheckCircle, Target, Users, Settings } from 'lucide-react';
 import { Reveal } from '@/components/motion/Reveal';
 
@@ -42,10 +42,10 @@ export function ProgramLayout({
 
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbJsonLd
         items={[
-          { name: 'Programs', href: '/programs' },
-          { name: title, href: slug ? `/programs/${slug}` : '/programs' },
+          { name: 'Programs', path: '/programs' },
+          { name: title, path: slug ? `/programs/${slug}` : '/programs' },
         ]}
       />
 

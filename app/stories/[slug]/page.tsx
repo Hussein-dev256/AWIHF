@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { ArrowLeft, Calendar, User, Clock, Heart } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
-import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 import { getStories, getStory } from '@/lib/content/stories';
 
 type StoryDetailProps = {
@@ -56,11 +56,11 @@ export default async function StoryDetailPage(props: StoryDetailProps) {
 
   return (
     <>
-      <Breadcrumbs
+      <BreadcrumbJsonLd
         items={[
-          { name: 'Impact', href: '/impact' },
-          { name: 'Impact Stories', href: '/impact#stories' },
-          { name: story.title, href: `/stories/${story.slug}` },
+          { name: 'Impact', path: '/impact' },
+          { name: 'Impact Stories', path: '/impact#stories' },
+          { name: story.title, path: `/stories/${story.slug}` },
         ]}
       />
 

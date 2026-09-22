@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveContactSubmission } from '@/lib/db/operations';
-import { notifyAdmin, sendEmailSafely } from '@/lib/email/resend';
+import { notifyAdminSafely, sendEmailSafely } from '@/lib/email/resend';
 import { contactConfirmationEmail, contactNotificationEmail } from '@/lib/email/templates';
 import { getSubmissionContext } from '@/lib/http/submissionContext';
 import { logger } from '@/lib/observability/logger';
@@ -38,8 +38,17 @@ export async function POST(request: NextRequest) {
       logger.error('contact.database_save.failed', new Error(saved.error));
     }
 
-    await notifyAdmin(contactNotificationEmail(result.data, submittedAt));
+    const emailResult = await notifyAdminSafely(contactNotificationEmail(result.data, submittedAt));
+    if (!emailResult.ok) {
+      logger.error('contact.admin_notification.failed', new Error(emailResult.error));
+    }
+
     void sendEmailSafely({ ...contactConfirmationEmail(result.data), to: result.data.email });
+
+    if (!saved.ok && !emailResult.ok) {
+      logger.error('contact.delivery_and_storage.both_failed', new Error('Both database save and admin notification failed.'));
+      return NextResponse.json({ message: 'Your message could not be received right now. Please contact us directly by email or phone.' }, { status: 500 });
+    }
 
     return NextResponse.json({ success: true, message: 'Your message has been received.' });
   } catch (error) {

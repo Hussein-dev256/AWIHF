@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
+function formatUgandaPhone(value: string) {
+  return value.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+}
+
 export default async function DonatePage() {
   const donationInfo = await getDonationInfo();
   const paymentOptions = [
@@ -72,7 +76,7 @@ export default async function DonatePage() {
                   </div>
                   <p className="text-sm text-gray-500 mb-2 mt-4">Mobile Money Number</p>
                   <div className="rounded-lg bg-white border border-gray-200 px-4 py-3 font-semibold text-brand-brown">
-                    {option.phone}
+                    {formatUgandaPhone(option.phone)}
                   </div>
                 </div>
               ))}
