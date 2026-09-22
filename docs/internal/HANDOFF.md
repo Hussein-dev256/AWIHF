@@ -111,7 +111,7 @@ Required variables:
 ```env
 RESEND_API_KEY=
 RESEND_FROM_EMAIL=
-AWIHF_ADMIN_EMAIL=acholiwomeninhealth@gmail.com
+AWIHF_ADMIN_EMAIL=info@acholiwomeninhealth.org
 ```
 
 Implemented workflows:

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveContactSubmission } from '@/lib/db/operations';
-import { notifyAdminSafely, sendEmailSafely } from '@/lib/email/resend';
+import { notifyAdmin, sendEmailSafely } from '@/lib/email/resend';
 import { contactConfirmationEmail, contactNotificationEmail } from '@/lib/email/templates';
 import { getSubmissionContext } from '@/lib/http/submissionContext';
 import { logger } from '@/lib/observability/logger';
@@ -32,12 +32,13 @@ export async function POST(request: NextRequest) {
       userAgent: context.userAgent,
     });
 
+    const submittedAt = new Date().toISOString();
+
     if (!saved.ok) {
-      return NextResponse.json({ message: 'Your message could not be saved right now.' }, { status: 500 });
+      logger.error('contact.database_save.failed', new Error(saved.error));
     }
 
-    const submittedAt = new Date().toISOString();
-    void notifyAdminSafely(contactNotificationEmail(result.data, submittedAt));
+    await notifyAdmin(contactNotificationEmail(result.data, submittedAt));
     void sendEmailSafely({ ...contactConfirmationEmail(result.data), to: result.data.email });
 
     return NextResponse.json({ success: true, message: 'Your message has been received.' });

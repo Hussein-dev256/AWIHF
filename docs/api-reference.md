@@ -4,7 +4,7 @@
 
 `POST /api/contact`
 
-Stores a contact submission in Neon, then sends administrator and user emails through Resend.
+Saves a contact submission in Neon when available, then sends the organization notification and user confirmation through Resend. If persistence is temporarily unavailable, the organization notification is still attempted so public inquiries can reach AWIHF.
 
 Expected fields:
 
@@ -17,8 +17,9 @@ Failure behavior:
 
 - Validation failure returns `400`.
 - Rate limit returns `429`.
-- Database failure returns `500` and no email should be sent.
-- Resend failure is logged after persistence.
+- Database failure is logged and the organization notification is still attempted.
+- Organization notification failure returns `500`.
+- User confirmation email failure is logged after the organization notification.
 
 ## Mentorship Applications
 

@@ -1,7 +1,7 @@
 import { ApplicationStatus as PrismaApplicationStatus } from '@prisma/client';
 import { getEnv } from '@/lib/config/env';
 import { logger } from '@/lib/observability/logger';
-import { prisma } from '@/lib/prisma';
+import { getPrisma } from '@/lib/prisma';
 import type { ContactSubmissionRecord, MentorshipApplicationRecord, ApplicationStatus } from './types';
 
 export type DbResult<T> = { ok: true; data: T } | { ok: false; error: string };
@@ -37,6 +37,7 @@ export async function insertContactSubmission(record: ContactSubmissionRecord): 
   }
 
   try {
+    const prisma = getPrisma();
     const submission = await prisma.contactSubmission.create({
       data: {
         fullName: record.fullName,
@@ -65,6 +66,7 @@ export async function insertMentorshipApplication(
   }
 
   try {
+    const prisma = getPrisma();
     const application = await prisma.mentorshipApplication.create({
       data: {
         fullName: record.fullName,
@@ -109,6 +111,7 @@ export async function getContactSubmissions() {
   }
 
   try {
+    const prisma = getPrisma();
     const submissions = await prisma.contactSubmission.findMany({
       orderBy: { createdAt: 'desc' },
     });
@@ -125,6 +128,7 @@ export async function getMentorshipApplications(status?: PrismaApplicationStatus
   }
 
   try {
+    const prisma = getPrisma();
     const applications = await prisma.mentorshipApplication.findMany({
       where: status ? { status } : undefined,
       orderBy: { submittedAt: 'desc' },
@@ -147,6 +151,7 @@ export async function updateMentorshipApplicationReview(input: {
   }
 
   try {
+    const prisma = getPrisma();
     const application = await prisma.mentorshipApplication.update({
       where: { id: input.id },
       data: {
@@ -169,6 +174,7 @@ export async function subscribeNewsletter(email: string): Promise<DbResult<{ id:
   }
 
   try {
+    const prisma = getPrisma();
     const subscriber = await prisma.newsletterSubscriber.upsert({
       where: { email },
       update: {

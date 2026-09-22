@@ -36,7 +36,7 @@ Cloudinary stores uploaded user documents such as CVs and transcripts. Neon stor
 
 ### Resend
 
-Resend sends notifications and confirmations after successful persistence. It is never the source of truth.
+Resend sends notifications and confirmations after successful persistence for operational workflows. For public contact inquiries, AWIHF still attempts the organization notification if database persistence is temporarily unavailable, because timely delivery to the organization is the primary user-facing outcome for that form.
 
 ## Business Workflow Order
 
@@ -48,7 +48,7 @@ Operational submissions must follow this order:
 4. Send Resend notifications.
 5. Return the response.
 
-If Cloudinary upload fails, no database record is created. If database persistence fails after upload, uploaded assets are deleted. If Resend fails after persistence, the database record remains.
+If Cloudinary upload fails, no database record is created. If database persistence fails after upload, uploaded assets are deleted. If Resend fails after persistence, the database record remains. Contact submissions are the exception: a database failure is logged, and the organization email notification is still attempted.
 
 ## Folder Structure
 
