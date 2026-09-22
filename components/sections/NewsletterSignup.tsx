@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/Button';
+import { Reveal } from '@/components/motion/Reveal';
 
 export function NewsletterSignup() {
   return (
     <section className="section-wrapper bg-gray-50">
-      <div className="content-container flex flex-col items-center text-center max-w-[560px] mx-auto">
+      <Reveal className="content-container flex flex-col items-center text-center max-w-[560px] mx-auto">
         <h2 className="text-[24px] md:text-[30px] font-semibold text-brand-brown leading-[1.3] mb-3">
           Stay Connected
         </h2>
@@ -24,7 +25,7 @@ export function NewsletterSignup() {
             </Button>
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -15,6 +15,14 @@ const links = [
   { name: 'Contact', href: '/contact' },
 ];
 
+function formatUgandaPhone(value: string) {
+  return value.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+}
+
+function telHref(value: string) {
+  return value.replace(/\s+/g, '');
+}
+
 export function Footer() {
   const [primaryPhone, secondaryPhone] = organizationProfile.phoneNumbers;
 
@@ -64,8 +72,8 @@ export function Footer() {
               </li>
               <li className="flex items-start">
                 <Phone className="w-4 h-4 md:w-5 md:h-5 mr-2.5 md:mr-3 mt-0.5 shrink-0" />
-                <a href={`tel:${primaryPhone}`} className="hover:text-brand-gold transition-colors">
-                  {primaryPhone} / {secondaryPhone}
+                <a href={`tel:${telHref(primaryPhone)}`} className="hover:text-brand-gold transition-colors">
+                  {formatUgandaPhone(primaryPhone)} / {formatUgandaPhone(secondaryPhone)}
                 </a>
               </li>
               <li className="flex items-start">

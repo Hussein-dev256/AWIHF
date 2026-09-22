@@ -9,6 +9,7 @@ import { Input, Textarea } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { PageHero } from '@/components/shared/PageHero';
 import { organizationProfile } from '@/lib/config/organization';
+import { Reveal } from '@/components/motion/Reveal';
 
 function getInitialSubject(value: string | null) {
   if (!value) return '';
@@ -22,6 +23,14 @@ function getInitialSubject(value: string | null) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
     .join(' ');
+}
+
+function formatUgandaPhone(value: string) {
+  return value.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+}
+
+function telHref(value: string) {
+  return value.replace(/\s+/g, '');
 }
 
 function ContactFormInner() {
@@ -99,7 +108,7 @@ export function ContactPageClient() {
       <section className="section-wrapper bg-gray-50">
         <div className="content-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 max-w-5xl mx-auto">
-            <div>
+            <Reveal>
               <h2 className="section-heading mb-6">Get In Touch</h2>
               <Card className="p-5 md:p-8">
                 <ul className="space-y-5 md:space-y-6 text-[#111111]">
@@ -118,8 +127,8 @@ export function ContactPageClient() {
                     </div>
                     <div>
                       <div className="font-semibold text-brand-brown mb-1">Phone</div>
-                      <a href={`tel:${primaryPhone}`} className="hover:text-brand-orange transition-colors block">{primaryPhone}</a>
-                      <a href={`tel:${secondaryPhone}`} className="hover:text-brand-orange transition-colors block mt-1">{secondaryPhone}</a>
+                      <a href={`tel:${telHref(primaryPhone)}`} className="hover:text-brand-orange transition-colors block">{formatUgandaPhone(primaryPhone)}</a>
+                      <a href={`tel:${telHref(secondaryPhone)}`} className="hover:text-brand-orange transition-colors block mt-1">{formatUgandaPhone(secondaryPhone)}</a>
                     </div>
                   </li>
                   <li className="flex items-start">
@@ -147,15 +156,15 @@ export function ContactPageClient() {
                   </div>
                 </div>
               </Card>
-            </div>
+            </Reveal>
 
-            <div>
+            <Reveal delayMs={120} variant="scale">
               <Card className="p-5 md:p-8 h-full">
                 <Suspense fallback={<div className="py-12 text-center text-gray-400">Loading form...</div>}>
                   <ContactFormInner />
                 </Suspense>
               </Card>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

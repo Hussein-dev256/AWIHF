@@ -70,7 +70,7 @@ export function PageHero({
         </div>
 
         {/* Layer 1 (Top): 100% Opaque Hero Content */}
-        <div className="relative z-10 text-center max-w-3xl mx-auto flex flex-col items-center justify-center">
+        <div className="relative z-10 text-center max-w-3xl mx-auto flex flex-col items-center justify-center page-hero-enter">
           <h1 className="text-white text-2xl md:text-[34px] lg:text-[38px] font-bold leading-[1.15] md:leading-[1.2] mb-2 md:mb-3">
             {title}
           </h1>
@@ -95,7 +95,8 @@ export function PageHero({
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="bg-white border border-gray-200 shadow-sm md:shadow-lg p-5 md:p-6 rounded-xl text-center flex flex-col items-center justify-center min-h-[112px] md:min-h-[140px] hover:shadow-xl transition-all duration-200"
+                  className="bg-white border border-gray-200 shadow-sm md:shadow-lg p-5 md:p-6 rounded-xl text-center flex flex-col items-center justify-center min-h-[112px] md:min-h-[140px] hover:shadow-xl transition-all duration-200 page-stat-enter"
+                  style={{ animationDelay: `${120 + i * 80}ms` }}
                 >
                   <div
                     className={`text-brand-green font-bold mb-2 leading-tight ${

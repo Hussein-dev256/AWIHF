@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Heart, Brain, Users, BookOpen, School, GraduationCap } from 'lucide-react';
 import { Card } from '../ui/Card';
+import { Reveal } from '@/components/motion/Reveal';
 
 const programs = [
   {
@@ -46,22 +47,26 @@ export function ProgramsGrid() {
   return (
     <section className="section-wrapper bg-gray-50">
       <div className="content-container">
-        <h2 className="section-heading">Our Programs</h2>
+        <Reveal>
+          <h2 className="section-heading">Our Programs</h2>
+        </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-8 mt-5 md:mt-8">
           {programs.map((prog, index) => (
-            <Card key={index} className="group relative overflow-hidden flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 hover:shadow-xl transition-all duration-300">
-              <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1 bg-brand-orange transition-all duration-300" />
-              <div className="w-12 h-12 rounded-xl bg-green-tint flex items-center justify-center shrink-0">
-                {prog.icon}
-              </div>
-              <div className="flex-1">
-                <h4 className="text-[18px] md:text-[20px] font-bold text-brand-brown mb-2 leading-[1.4]">{prog.title}</h4>
-                <p className="text-gray-500 text-[15px] md:text-[16px] leading-[1.6] mb-4">{prog.description}</p>
-                <Link href={prog.href} className="text-brand-orange font-medium hover:text-brand-gold transition-colors inline-flex items-center">
-                  Learn More <span className="ml-1">→</span>
-                </Link>
-              </div>
-            </Card>
+            <Reveal key={prog.title} delayMs={index * 80}>
+              <Card className="group relative overflow-hidden flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 hover:shadow-xl transition-all duration-300">
+                <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1 bg-brand-orange transition-all duration-300" />
+                <div className="w-12 h-12 rounded-xl bg-green-tint flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105 motion-reduce:transform-none">
+                  {prog.icon}
+                </div>
+                <div className="flex-1">
+                  <h4 className="text-[18px] md:text-[20px] font-bold text-brand-brown mb-2 leading-[1.4]">{prog.title}</h4>
+                  <p className="text-gray-500 text-[15px] md:text-[16px] leading-[1.6] mb-4">{prog.description}</p>
+                  <Link href={prog.href} className="group/link text-brand-orange font-medium hover:text-brand-gold transition-colors inline-flex items-center">
+                    View our {prog.title} programme <span className="ml-1 motion-arrow">-&gt;</span>
+                  </Link>
+                </div>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>

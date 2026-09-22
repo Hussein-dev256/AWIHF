@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { Hero } from '@/components/sections/Hero';
 import { AboutSummary } from '@/components/sections/AboutSummary';
 import { ProgramsGrid } from '@/components/sections/ProgramsGrid';
@@ -8,6 +9,14 @@ import { LatestNews } from '@/components/sections/LatestNews';
 import { GetInvolvedCTA } from '@/components/sections/GetInvolvedCTA';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PartnershipsSection } from '@/components/sections/PartnershipsSection';
+
+export const metadata: Metadata = {
+  title: 'Acholi Women in Health Foundation',
+  description: 'Acholi Women in Health Foundation improves healthcare outcomes for women and girls in Gulu and the Acholi sub-region through community-rooted health programmes.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   return (

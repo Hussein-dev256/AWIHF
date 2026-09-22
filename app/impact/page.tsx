@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
+import { Reveal } from '@/components/motion/Reveal';
 
 export const metadata: Metadata = {
   title: 'Impact',
@@ -214,7 +215,7 @@ export default function ImpactPage() {
       />
 
       <section className="section-wrapper bg-white">
-        <div className="content-container max-w-4xl mx-auto">
+        <Reveal className="content-container max-w-4xl mx-auto">
           <div className="text-center md:text-left mb-5 md:mb-7">
             <h2 className="section-heading">Impact Summary</h2>
           </div>
@@ -229,7 +230,7 @@ export default function ImpactPage() {
               This approach has already produced measurable results, including more than 1,000 households reached through the Patiko Medical Outreach, more than 50 healthcare students equipped through the mentorship pipeline, and multiple structured programme phases completed across the Acholi sub-region. Together, these efforts show AWIHF's practical model of impact: community trust, women-led health leadership, stronger local systems, and more dignified access to care for women, girls, and families in Northern Uganda.
             </p>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <ImpactReportSpotlight />
@@ -283,15 +284,17 @@ export default function ImpactPage() {
       {/* Programme Highlights */}
       <section className="section-wrapper bg-gray-50">
         <div className="content-container">
-          <div className="text-center mb-7 md:mb-10">
+          <Reveal className="text-center mb-7 md:mb-10">
             <h2 className="section-heading">Programme Highlights</h2>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {programmeHighlights.map((highlight) => (
-              <Card key={highlight.title} className="border-t-4 border-t-brand-orange">
-                <h4 className="text-[20px] font-semibold text-brand-brown mb-3">{highlight.title}</h4>
-                <p className="text-gray-600 leading-[1.6]">{highlight.description}</p>
-              </Card>
+            {programmeHighlights.map((highlight, index) => (
+              <Reveal key={highlight.title} delayMs={index * 70}>
+                <Card className="border-t-4 border-t-brand-orange">
+                  <h4 className="text-[20px] font-semibold text-brand-brown mb-3">{highlight.title}</h4>
+                  <p className="text-gray-600 leading-[1.6]">{highlight.description}</p>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -302,24 +305,25 @@ export default function ImpactPage() {
       {/* Stories of Impact — integrated from former Stories page */}
       <section id="stories" className="section-wrapper bg-white scroll-mt-20">
         <div className="content-container">
-          <div className="text-center mb-8 md:mb-12">
+          <Reveal className="text-center mb-8 md:mb-12">
             <h2 className="section-heading">Stories of Impact</h2>
             <p className="text-gray-500 text-[15px] md:text-[17px] leading-[1.6] max-w-xl mx-auto mt-2">
               Real narratives of resilience, health empowerment, and transformation from the communities we serve.
             </p>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
-            {stories.map((story) => (
-              <StoryCard
-                key={story.slug}
-                title={story.title}
-                category={story.category}
-                author={story.author}
-                excerpt={story.excerpt}
-                image={story.image}
-                href={story.link || `/stories/${story.slug}`}
-                ctaText="Read Story"
-              />
+            {stories.map((story, index) => (
+              <Reveal key={story.slug} delayMs={Math.min(index, 5) * 70}>
+                <StoryCard
+                  title={story.title}
+                  category={story.category}
+                  author={story.author}
+                  excerpt={story.excerpt}
+                  image={story.image}
+                  href={story.link || `/stories/${story.slug}`}
+                  ctaText="Read Story"
+                />
+              </Reveal>
             ))}
           </div>
         </div>

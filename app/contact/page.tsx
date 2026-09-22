@@ -3,7 +3,7 @@ import { ContactPageClient } from '@/components/contact/ContactPageClient';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Contact',
+  title: 'Contact Acholi Women in Health Foundation',
   description: 'Contact Acholi Women in Health Foundation in Gulu, Northern Uganda for partnerships, donations, volunteering, mentorship, and programme enquiries.',
   alternates: {
     canonical: '/contact',

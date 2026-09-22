@@ -7,7 +7,7 @@ const optionalNonEmptyString = z.preprocess(
 );
 
 const envSchema = z.object({
-  NEXT_PUBLIC_SITE_URL: z.string().url().default('https://acholiwomeninhealth.org'),
+  NEXT_PUBLIC_SITE_URL: z.string().url().default('https://www.acholiwomeninhealth.org'),
   NEXT_PUBLIC_SANITY_PROJECT_ID: optionalNonEmptyString,
   NEXT_PUBLIC_SANITY_DATASET: z.string().min(1).default('production'),
   SANITY_API_VERSION: z.string().min(1).default('2024-01-01'),

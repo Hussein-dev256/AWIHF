@@ -1,15 +1,32 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ArrowDownToLine, CheckCircle2, FileText, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { PageHero } from '@/components/shared/PageHero';
 import { getImpactReportContent } from '@/lib/content/impactReport';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
+
+export const metadata: Metadata = {
+  title: 'Impact Report',
+  description: 'Read the AWIHF impact report covering programme phases, community reach, healthcare priorities, and scale-up plans for women and girls in Northern Uganda.',
+  alternates: {
+    canonical: '/impact/report',
+  },
+};
 
 export default async function ImpactReportPage() {
   const report = await getImpactReportContent();
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Impact', href: '/impact' },
+          { name: 'Impact Report', href: '/impact/report' },
+        ]}
+      />
+
       <PageHero
         title={report.title}
         subtitle={report.tagline}

@@ -10,7 +10,7 @@ import { CheckCircle2, Phone, ShieldCheck } from 'lucide-react';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Donate',
+  title: 'Donate to Acholi Women in Health Foundation',
   description: 'Support AWIHF programmes in maternal health, mental health, community outreach, health education, and mentorship through official mobile money donation details.',
   alternates: {
     canonical: '/donate',

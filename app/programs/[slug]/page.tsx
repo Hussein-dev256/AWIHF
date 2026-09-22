@@ -325,5 +325,5 @@ export default async function ProgramPage(props: { params: Promise<{ slug: strin
     notFound();
   }
 
-  return <ProgramLayout {...program} />;
+  return <ProgramLayout {...program} slug={params.slug} />;
 }

@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { getNewsPosts } from '@/lib/content/news';
+import { getStories } from '@/lib/content/stories';
+import { organizationProfile } from '@/lib/config/organization';
 
 const staticRoutes = [
   { path: '', priority: 1 },
@@ -25,11 +27,13 @@ const programRoutes = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://acholiwomeninhealth.org';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || organizationProfile.url;
   const newsPosts = await getNewsPosts();
+  const stories = getStories();
   const routes = [
     ...staticRoutes,
     ...programRoutes.map((path) => ({ path, priority: 0.72 })),
+    ...stories.map((story) => ({ path: `/stories/${story.slug}`, priority: 0.62 })),
     ...newsPosts.map((post) => ({ path: `/news/${post.slug}`, priority: 0.65 })),
   ];
 

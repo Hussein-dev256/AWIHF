@@ -10,6 +10,7 @@ import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PortableTextRenderer } from '@/components/cms/PortableTextRenderer';
 import { getNewsPost, getNewsPosts } from '@/lib/content/news';
 import { organizationProfile } from '@/lib/config/organization';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 
 type NewsDetailProps = {
   params: Promise<{ slug: string }>;
@@ -79,57 +80,36 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
   const articleUrl = `${siteUrl}/news/${article.slug}`;
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'NewsArticle',
-        headline: article.title,
-        description,
-        image: [absoluteUrl(articleImage)],
-        datePublished: article.publishedAt || article.date,
-        dateModified: article.publishedAt || article.date,
-        mainEntityOfPage: articleUrl,
-        isPartOf: `${siteUrl}/news`,
-        author: {
-          '@type': 'Organization',
-          name: article.author,
-        },
-        publisher: {
-          '@type': 'NGO',
-          name: organizationProfile.name,
-          logo: {
-            '@type': 'ImageObject',
-            url: absoluteUrl('/images/AWIHF logo.webp'),
-          },
-        },
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description,
+    image: [absoluteUrl(articleImage)],
+    datePublished: article.publishedAt || article.date,
+    dateModified: article.publishedAt || article.date,
+    mainEntityOfPage: articleUrl,
+    isPartOf: `${siteUrl}/news`,
+    author: {
+      '@type': 'Organization',
+      name: article.author,
+    },
+    publisher: {
+      '@type': 'NGO',
+      name: organizationProfile.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/images/AWIHF logo.webp'),
       },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          {
-            '@type': 'ListItem',
-            position: 1,
-            name: 'Home',
-            item: siteUrl,
-          },
-          {
-            '@type': 'ListItem',
-            position: 2,
-            name: 'News',
-            item: `${siteUrl}/news`,
-          },
-          {
-            '@type': 'ListItem',
-            position: 3,
-            name: article.title,
-            item: articleUrl,
-          },
-        ],
-      },
-    ],
+    },
   };
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'News', href: '/news' },
+          { name: article.title, href: `/news/${article.slug}` },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}

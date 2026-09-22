@@ -1,5 +1,6 @@
 import { Building2, GraduationCap, Handshake, Landmark, UsersRound } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
+import { Reveal } from '@/components/motion/Reveal';
 
 const partners = [
   {
@@ -43,7 +44,7 @@ export function PartnershipsSection() {
   return (
     <section className="section-wrapper bg-gray-50">
       <div className="content-container">
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+        <Reveal className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
           <h2 className="section-heading">
             Partnerships for Community Health
           </h2>
@@ -52,18 +53,20 @@ export function PartnershipsSection() {
             universities, government structures, civil society organizations, cultural institutions, and community
             leadership networks.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-5">
-          {partners.map((partner) => (
-            <Card key={partner.name} className="bg-white border border-gray-200 p-5 h-full">
-              <div className="w-11 h-11 rounded-xl bg-green-tint text-brand-green flex items-center justify-center mb-5">
-                {partner.icon}
-              </div>
-              <span className="text-[11px] font-bold uppercase tracking-wider text-brand-orange">{partner.type}</span>
-              <h3 className="text-[17px] font-bold text-brand-brown leading-tight mt-2 mb-3">{partner.name}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{partner.description}</p>
-            </Card>
+          {partners.map((partner, index) => (
+            <Reveal key={partner.name} delayMs={index * 70}>
+              <Card className="bg-white border border-gray-200 p-5 h-full">
+                <div className="w-11 h-11 rounded-xl bg-green-tint text-brand-green flex items-center justify-center mb-5 transition-transform duration-300 hover:scale-105 motion-reduce:transform-none">
+                  {partner.icon}
+                </div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-brand-orange">{partner.type}</span>
+                <h3 className="text-[17px] font-bold text-brand-brown leading-tight mt-2 mb-3">{partner.name}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{partner.description}</p>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </div>

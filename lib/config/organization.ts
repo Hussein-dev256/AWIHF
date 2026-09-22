@@ -1,7 +1,7 @@
 export const organizationProfile = {
   name: 'Acholi Women in Health Foundation',
   shortName: 'AWIHF',
-  url: 'https://acholiwomeninhealth.org',
+  url: 'https://www.acholiwomeninhealth.org',
   description:
     'Acholi Women in Health Foundation (AWIHF) is a women-led, community-rooted non-profit improving healthcare outcomes for women and girls in Gulu and the Acholi sub-region of Northern Uganda.',
   slogan: 'Empowering Women. Improving Health. Healing Lives, Transforming Communities.',

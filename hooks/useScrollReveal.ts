@@ -19,11 +19,12 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
 ) {
   const { threshold = 0.15, rootMargin = '0px 0px -40px 0px', delay = 0 } = options;
   const ref = useRef<T>(null);
+  const timeoutRef = useRef<number | null>(null);
   const [isRevealed, setIsRevealed] = useState(false);
 
   const reveal = useCallback(() => {
     if (delay > 0) {
-      setTimeout(() => setIsRevealed(true), delay);
+      timeoutRef.current = window.setTimeout(() => setIsRevealed(true), delay);
     } else {
       setIsRevealed(true);
     }
@@ -55,6 +56,9 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
     observer.observe(element);
 
     return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
       if (element) observer.unobserve(element);
     };
   }, [threshold, rootMargin, reveal, isRevealed]);

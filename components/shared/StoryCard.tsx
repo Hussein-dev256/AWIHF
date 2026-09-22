@@ -90,7 +90,7 @@ export function StoryCard({
             className="text-brand-orange font-semibold text-xs md:text-sm hover:text-brand-gold transition-colors inline-flex items-center gap-1 group/link"
           >
             <span>{ctaText}</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
+            <ArrowRight className="w-3.5 h-3.5 motion-arrow" />
           </Link>
         </div>
       </div>

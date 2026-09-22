@@ -24,7 +24,7 @@ const coreNavigation = [
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "AWIHF | Acholi Women in Health Foundation",
+    default: "Acholi Women in Health Foundation | AWIHF",
     template: "%s | AWIHF",
   },
   description: organizationProfile.description,
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "AWIHF | Acholi Women in Health Foundation",
+    title: "Acholi Women in Health Foundation | AWIHF",
     description: organizationProfile.description,
     url: siteUrl,
     siteName: 'Acholi Women in Health Foundation',
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AWIHF | Acholi Women in Health Foundation',
+    title: 'Acholi Women in Health Foundation | AWIHF',
     description: organizationProfile.description,
     images: ['/images/AWIHF logo.svg'],
   }

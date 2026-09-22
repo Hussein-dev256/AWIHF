@@ -6,7 +6,7 @@ import { DonateCTA } from '@/components/sections/DonateCTA';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = {
-  title: 'Programs',
+  title: 'Health Programs in Northern Uganda',
   description: 'AWIHF programmes include maternal and reproductive health, mental health and trauma support, community health education, healthcare systems strengthening, outreach, and mentorship.',
   alternates: {
     canonical: '/programs',

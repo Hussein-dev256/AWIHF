@@ -1,13 +1,17 @@
 import React from 'react';
+import Link from 'next/link';
 import { PageHero } from './PageHero';
 import { ProgrammeInPracticeGallery } from './ProgrammeInPracticeGallery';
 import { DonateCTA } from '../sections/DonateCTA';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { CheckCircle, Target, Users, Settings } from 'lucide-react';
+import { Reveal } from '@/components/motion/Reveal';
 
 interface ProgramLayoutProps {
   title: string;
   heroImage?: string;
   fieldImage?: string;
+  slug?: string;
   practiceImages?: string[];
   practiceDescription?: string;
   stats: { value: string; label: string }[];
@@ -22,6 +26,7 @@ export function ProgramLayout({
   title, 
   heroImage, 
   fieldImage,
+  slug,
   practiceImages,
   practiceDescription,
   stats, 
@@ -37,6 +42,13 @@ export function ProgramLayout({
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { name: 'Programs', href: '/programs' },
+          { name: title, href: slug ? `/programs/${slug}` : '/programs' },
+        ]}
+      />
+
       {/* Standardized Shared Hero & Floating Impact Stats */}
       <PageHero
         title={title}
@@ -48,13 +60,13 @@ export function ProgramLayout({
         <div className="content-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
             {/* Left: Overview */}
-            <div className="lg:col-span-7 text-[#111111] text-[16px] leading-[1.6]">
+            <Reveal className="lg:col-span-7 text-[#111111] text-[16px] leading-[1.6]">
               <h2 className="text-2xl md:text-3xl font-bold text-brand-brown mb-4 md:mb-6">Scope of Work</h2>
               {description}
-            </div>
+            </Reveal>
 
             {/* Right: Objective Callout */}
-            <div className="lg:col-span-5 bg-gold-tint border border-brand-gold/30 rounded-2xl p-5 md:p-8">
+            <Reveal delayMs={120} variant="scale" className="lg:col-span-5 bg-gold-tint border border-brand-gold/30 rounded-2xl p-5 md:p-8">
               <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 md:mb-6 text-brand-orange shadow-sm shrink-0">
                 <Target className="w-6 h-6" />
               </div>
@@ -62,7 +74,7 @@ export function ProgramLayout({
               <p className="text-[#111111] text-[16px] leading-relaxed italic">
                 {objective}
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -73,7 +85,7 @@ export function ProgramLayout({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left: Focus & Beneficiaries */}
-            <div className="lg:col-span-5 bg-green-tint border border-brand-green/20 rounded-2xl p-5 md:p-8 flex flex-col">
+            <Reveal className="lg:col-span-5 bg-green-tint border border-brand-green/20 rounded-2xl p-5 md:p-8 flex flex-col">
               <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 md:mb-6 text-brand-green shadow-sm shrink-0">
                 <Users className="w-6 h-6" />
               </div>
@@ -85,10 +97,10 @@ export function ProgramLayout({
                 <span className="text-[12px] uppercase font-bold text-brand-green tracking-wider block">Area of operation</span>
                 <span className="text-[#111111] font-semibold text-sm">Gulu, Acholi sub-region</span>
               </div>
-            </div>
+            </Reveal>
 
             {/* Right: Activities Conducted */}
-            <div className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-5 md:p-8">
+            <Reveal delayMs={120} className="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-5 md:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-xl bg-orange-tint flex items-center justify-center text-brand-orange shrink-0">
                   <Settings className="w-5 h-5" />
@@ -103,7 +115,7 @@ export function ProgramLayout({
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
           </div>
         </div>
@@ -112,10 +124,10 @@ export function ProgramLayout({
       {/* Success Indicators / Results */}
       <section className="section-wrapper bg-white">
         <div className="content-container max-w-4xl mx-auto">
-          <div className="text-center mb-10">
+          <Reveal className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-brand-brown">Success Indicators</h2>
-          </div>
-          <div className="bg-orange-tint/40 border border-brand-orange/20 rounded-2xl p-5 md:p-8">
+          </Reveal>
+          <Reveal delayMs={100} className="bg-orange-tint/40 border border-brand-orange/20 rounded-2xl p-5 md:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {successIndicators.map((ind, i) => (
                 <div key={i} className="flex items-start gap-3">
@@ -124,7 +136,7 @@ export function ProgramLayout({
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -136,6 +148,22 @@ export function ProgramLayout({
           images={resolvedImages}
         />
       )}
+
+      <section className="section-wrapper bg-white border-t border-gray-100">
+        <div className="content-container max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link href="/programs" className="rounded-xl border border-gray-200 bg-white p-4 text-sm font-semibold text-brand-brown hover:border-brand-orange/40 hover:text-brand-orange transition-colors">
+              Back to all AWIHF programmes
+            </Link>
+            <Link href="/impact" className="rounded-xl border border-gray-200 bg-white p-4 text-sm font-semibold text-brand-brown hover:border-brand-orange/40 hover:text-brand-orange transition-colors">
+              See AWIHF impact and stories
+            </Link>
+            <Link href="/get-involved" className="rounded-xl border border-gray-200 bg-white p-4 text-sm font-semibold text-brand-brown hover:border-brand-orange/40 hover:text-brand-orange transition-colors">
+              Get involved with this work
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <DonateCTA />
     </>

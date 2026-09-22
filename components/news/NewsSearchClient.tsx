@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import { Badge } from '@/components/ui/Badge';
 import { StoryCard } from '@/components/shared/StoryCard';
 import type { NewsPost } from '@/lib/content/news';
+import { Reveal } from '@/components/motion/Reveal';
 
 export function NewsSearchClient({ posts }: { posts: NewsPost[] }) {
   const [query, setQuery] = useState('');
@@ -48,19 +49,20 @@ export function NewsSearchClient({ posts }: { posts: NewsPost[] }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
-          {filteredPosts.map((item) => (
-            <StoryCard
-              key={item.slug}
-              title={item.title}
-              category={item.category}
-              date={item.date}
-              author={item.author}
-              excerpt={item.excerpt}
-              image={item.image}
-              imageAlt={item.imageAlt}
-              href={`/news/${item.slug}`}
-              ctaText="Read Full Article"
-            />
+          {filteredPosts.map((item, index) => (
+            <Reveal key={item.slug} delayMs={Math.min(index, 5) * 70}>
+              <StoryCard
+                title={item.title}
+                category={item.category}
+                date={item.date}
+                author={item.author}
+                excerpt={item.excerpt}
+                image={item.image}
+                imageAlt={item.imageAlt}
+                href={`/news/${item.slug}`}
+                ctaText="Read Full Article"
+              />
+            </Reveal>
           ))}
         </div>
       )}

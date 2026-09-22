@@ -3,6 +3,7 @@ import { ArrowRight, FileText } from 'lucide-react';
 import { getImpactReportContent } from '@/lib/content/impactReport';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { Reveal } from '@/components/motion/Reveal';
 
 export async function ImpactReportSpotlight() {
   const report = await getImpactReportContent();
@@ -10,7 +11,7 @@ export async function ImpactReportSpotlight() {
   return (
     <section className="section-wrapper bg-white">
       <div className="content-container">
-        <div className="rounded-2xl border border-brand-orange/20 bg-orange-tint/30 p-5 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-8 items-center">
+        <Reveal variant="scale" className="rounded-2xl border border-brand-orange/20 bg-orange-tint/30 p-5 md:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-6 md:gap-8 items-center">
           <div>
             <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-white text-brand-orange flex items-center justify-center mb-4 md:mb-5 shadow-sm">
               <FileText className="w-6 h-6" />
@@ -36,7 +37,7 @@ export async function ImpactReportSpotlight() {
               </Card>
             ))}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

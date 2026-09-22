@@ -1,4 +1,4 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://acholiwomeninhealth.org';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.acholiwomeninhealth.org';
 
 type BreadcrumbItem = {
   name: string;
