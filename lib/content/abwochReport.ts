@@ -306,39 +306,39 @@ export const abwochReportData: AbwochReportData = {
   ],
   galleryImages: [
     {
-      src: '/images/Abwoch image 1.webp',
-      alt: 'Community members gathered under shade trees at Abwoch Health Centre III for health education',
-      caption: 'Community members gathered at Abwoch Health Centre III for health education and service orientation.',
-    },
-    {
-      src: '/images/Abwoch image 2.webp',
-      alt: 'AWIHF and partner clinical team during morning briefing and triage set-up',
-      caption: 'AWIHF clinicians and partner teams during morning briefing and patient flow coordination.',
+      src: '/images/Abwoch image 5.webp',
+      alt: 'Community members gathered before the health education talk at Abwoch Health Centre III',
+      caption: 'Community members gather before the health education talk at Abwoch Health Centre III.',
     },
     {
       src: '/images/AWIHF-HSS2.webp',
-      alt: 'Clinician conducting medical consultation and examination in the consultation room',
-      caption: 'General medical consultations delivering essential diagnosis and treatment for acute conditions.',
-    },
-    {
-      src: '/images/Abwoch image 3.webp',
-      alt: 'Tackle Sickle Cell Africa specialists conducting counseling and screening',
-      caption: 'Specialized sickle cell counseling and rapid screening conducted with Tackle Sickle Cell Africa.',
-    },
-    {
-      src: '/images/Abwoch image 4.webp',
-      alt: 'TASO counselor conducting voluntary HIV testing and pre-test counseling',
-      caption: 'Voluntary HIV testing, counseling, and prevention linkage delivered by TASO Gulu Centre.',
-    },
-    {
-      src: '/images/Abwoch image 5.webp',
-      alt: 'Reproductive Health Uganda midwives providing family planning support and cervical screening',
-      caption: 'Cervical cancer screening and modern family planning counseling provided with Reproductive Health Uganda.',
+      alt: 'A TASO staff member educating participants on HIV self-testing using OraQuick',
+      caption: 'A TASO staff member educating participants on HIV self-testing using OraQuick.',
     },
     {
       src: '/images/Abwoch image 6.webp',
-      alt: 'AWIHF volunteers and local health workers dispensing prescribed medications at the dispensary',
-      caption: 'Medication dispensing and post-consultation guidance at the Abwoch Health Centre III dispensary.',
+      alt: 'Community health workers and volunteers recording patient details and vital signs at the registration desk',
+      caption: 'Community health workers and volunteers recording patient details and vital signs at the registration desk.',
+    },
+    {
+      src: '/images/Abwoch image 4.webp',
+      alt: 'A young participant smiling during rapid finger-prick blood screening at the outreach camp',
+      caption: 'A young participant smiles during a rapid finger-prick blood screening at the outreach camp.',
+    },
+    {
+      src: '/images/Abwoch image 3.webp',
+      alt: 'Tackle Sickle Cell Africa staff counselling and screening clients',
+      caption: 'Tackle Sickle Cell Africa staff counselling and screening clients.',
+    },
+    {
+      src: '/images/Abwoch image 1.webp',
+      alt: "AWIHF's Co-Founder and Chief Operations Officer carrying out a general examination in the consultation room",
+      caption: "AWIHF's Co-Founder and Chief Operations Officer carrying out a general examination in the consultation room.",
+    },
+    {
+      src: '/images/Abwoch image 2.webp',
+      alt: "AWIHF's Founder and CEO speaking with an RHU staff member during the outreach",
+      caption: "AWIHF's Founder and CEO speaking with an RHU staff member during the outreach.",
     },
   ],
 };
