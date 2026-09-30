@@ -18,6 +18,7 @@ export type CmsNewsArticle = {
   seoDescription?: string;
   seoImage?: string | Record<string, unknown>;
   votingUrl?: string;
+  reportUrl?: string;
   author: string;
   readTime: string;
   content: string[];
@@ -46,6 +47,7 @@ function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
     seoDescription: article.seoDescription,
     seoImage: imageUrl(article.seoImage, 1200, 675) || undefined,
     votingUrl: article.votingUrl,
+    reportUrl: article.reportUrl,
     author: article.author,
     readTime: article.readTime,
     content: article.content,

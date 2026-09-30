@@ -85,11 +85,11 @@ export default function ImpactPage() {
       period: "3 July 2026",
       title: "Abwoch Medical Outreach",
       summary:
-        "We conducted a community medical outreach at Abwoch Health Center III, bringing essential screening, reproductive health services, and counselling closer to underserved families.",
+        "We conducted our official pre-launch medical outreach at Abwoch Health Centre III in Omoro District, reaching 301 community members with essential clinical consultations, screenings, and reproductive health services.",
       highlights: [
-        "Offered general consultations and screening at a community health facility touchpoint.",
-        "Delivered HIV screening and counselling alongside breast, cervical cancer, and sickle cell awareness.",
-        "Reinforced our model of pairing preventive education with referral-oriented support.",
+        "Delivered 121 general medical consultations with 71 documented diagnoses and immediate treatment dispensing.",
+        "Screened 76 people for sickle cell, identifying 23 trait/disease carriers (30.3%) for informed reproductive choices.",
+        "Provided HIV counseling/testing to 56 people, screened 35 women for cervical cancer, and supported 13 family planning clients with multi-partner collaboration.",
       ],
     },
     {
@@ -195,12 +195,12 @@ export default function ImpactPage() {
     },
     {
       slug: "abwoch-medical-outreach-2026",
-      title: "Integrated Frontline Care at Abwoch Health Center III",
-      excerpt: "Bringing general medical screening, reproductive health services, HIV counseling, and cancer awareness directly to rural families in need of accessible frontline care.",
+      title: "Abwoch Medical Outreach Reached 301 People in One Day",
+      excerpt: "Delivering general consultations, sickle cell screening, HIV testing, cervical cancer screening, and family planning to 301 community members in Tochi County.",
       category: "Community Outreach",
       image: "/images/AWIHF-Abwoch.webp",
       author: "AWIHF Clinical Team",
-      link: "/stories/abwoch-medical-outreach-2026"
+      link: "/news/abwoch-medical-outreach-2026"
     }
   ];
 

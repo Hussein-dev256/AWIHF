@@ -547,17 +547,307 @@
   },
   {
     "slug": "abwoch-medical-outreach-2026",
-    "title": "Abwoch Medical Outreach Extends Essential Screening and Reproductive Health Services",
+    "title": "Abwoch Medical Outreach Reached 301 People in One Day",
     "category": "Outreach",
     "date": "July 3, 2026",
-    "excerpt": "AWIHF conducted a community medical outreach at Abwoch Health Center III, delivering consultations, reproductive health services, HIV screening and counseling, and cancer and sickle cell awareness services closer to the people who needed them.",
+    "publishedAt": "2026-07-03",
+    "excerpt": "On 3 July 2026, AWIHF held its official pre-launch medical outreach at Abwoch Health Centre III in Omoro District, reaching 301 community members with essential clinical consultations, screenings, and reproductive health services.",
     "image": "/images/AWIHF-Abwoch.webp",
+    "imageAlt": "AWIHF and partner healthcare teams conducting community medical outreach at Abwoch Health Centre III",
+    "articleImage": "/images/AWIHF-Abwoch.webp",
+    "articleImageAlt": "AWIHF clinical outreach team and community members at Abwoch Health Centre III in Omoro District",
+    "seoTitle": "Abwoch Medical Outreach Reached 301 People | AWIHF News",
+    "seoDescription": "AWIHF pre-launch medical outreach at Abwoch Health Centre III delivered free essential care to 301 community members across five service streams in one day.",
+    "seoImage": "/images/AWIHF-Abwoch.webp",
+    "reportUrl": "/impact/reports/abwoch-2026",
     "author": "AWIHF Communications",
-    "readTime": "3 min read",
+    "readTime": "4 min read",
     "content": [
-      "On 3 July 2026, Acholi Women in Health Foundation (AWIHF) conducted a Medical Outreach Programme at Abwoch Health Center III as part of our continuing effort to bring integrated, community-based healthcare services closer to underserved families.",
-      "The outreach offered general medical consultations and screening, reproductive health services, HIV screening and counseling, breast cancer screening and awareness, sickle cell screening and awareness, and cervical cancer awareness, creating a single community touchpoint where women, girls, and families could access essential information and frontline care.",
-      "By combining preventive education with practical screening and referral-oriented support, the Abwoch outreach reflected AWIHF's model of programme delivery: meeting communities where they are, strengthening early health-seeking behavior, and connecting local people to dignified care pathways."
+      "On 3 July 2026, the Acholi Women in Health Foundation (AWIHF) held its official pre-launch medical outreach at Abwoch Health Centre III in Tochi County, Omoro District, under the theme \"Rooted in Community, Rising in Health: The AWIHF Story.\"",
+      "The one-day outreach brought five essential health services directly to the community, free of charge, through a coordinated multi-partner model involving AWIHF, Tackle Sickle Cell Africa, TASO Gulu Centre, Reproductive Health Uganda, Hashtag Gulu, and Abwoch Health Centre III.",
+      "By the end of the day, 301 community members had been reached, including 121 general medical consultations, 76 sickle cell screenings, 56 HIV service clients, 35 cervical cancer screenings, and 13 modern family planning clients, proving the viability and necessity of integrated, community-rooted health outreach."
+    ],
+    "body": [
+      {
+        "_key": "abwoch-intro1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-intro1-span",
+            "_type": "span",
+            "text": "On 3 July 2026, the Acholi Women in Health Foundation (AWIHF) held its official pre-launch medical outreach at Abwoch Health Centre III in Tochi County, Omoro District, under the theme \"Rooted in Community, Rising in Health: The AWIHF Story.\"",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-intro2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-intro2-span",
+            "_type": "span",
+            "text": "The one-day outreach brought essential health services closer to the community, free of charge, through a coordinated effort involving AWIHF, specialized health-service partners, Abwoch Health Centre III, and local district authorities. Conducted as part of AWIHF's pre-launch programming, the camp was designed to demonstrate the Foundation's community-rooted service model while delivering urgent care to underserved families.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-intro3",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-intro3-span",
+            "_type": "span",
+            "text": "By the end of the day, 301 community members had been reached in a single day, demonstrating both the overwhelming demand for accessible health services and the potential of a coordinated, community-based approach in overcoming rural barriers of distance, cost, and health literacy.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-delivered-heading",
+        "_type": "block",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-del-h2",
+            "_type": "span",
+            "text": "What the Outreach Delivered",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat1",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat1-strong",
+            "_type": "span",
+            "text": "301 community members reached",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat1-txt",
+            "_type": "span",
+            "text": " across five essential health service streams in one day.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat2",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat2-strong",
+            "_type": "span",
+            "text": "121 general medical consultations",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat2-txt",
+            "_type": "span",
+            "text": " (71.1% women), with 71 consultations resulting in a documented diagnosis and immediate medication dispensing.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat3",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat3-strong",
+            "_type": "span",
+            "text": "76 people screened for sickle cell",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat3-txt",
+            "_type": "span",
+            "text": ", identifying 23 individuals (30.3%) carrying either sickle cell trait or sickle cell disease.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat4",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat4-strong",
+            "_type": "span",
+            "text": "56 people reached through HIV services",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat4-txt",
+            "_type": "span",
+            "text": ", with 52 tested (98.1% negative, 1.9% positive linked to care) and 3 high-risk clients initiated on PrEP.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat5",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat5-strong",
+            "_type": "span",
+            "text": "35 women screened for cervical cancer",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat5-txt",
+            "_type": "span",
+            "text": ", with 1 woman referred for further specialized assessment and clinical management.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat6",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat6-strong",
+            "_type": "span",
+            "text": "13 women supported with modern family planning",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat6-txt",
+            "_type": "span",
+            "text": ", choosing Depo-Provera (84.6%) and Sayana Press (15.4%).",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-stat7",
+        "_type": "block",
+        "style": "normal",
+        "listItem": "bullet",
+        "level": 1,
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-stat7-strong",
+            "_type": "span",
+            "text": "5 specialist partners",
+            "marks": ["strong"]
+          },
+          {
+            "_key": "abwoch-stat7-txt",
+            "_type": "span",
+            "text": " working side by side under a collaborative task-sharing framework.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-meaning-heading",
+        "_type": "block",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-mean-h2",
+            "_type": "span",
+            "text": "Meaning of the Results",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-meaning1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-meaning1-span",
+            "_type": "span",
+            "text": "The outreach highlighted both the scale of unmet health needs in the community and the value of bringing multiple services together in one location. General consultations accounted for the largest share of attendance, while the specialised services provided opportunities for community members to learn their health status, access preventive care, and receive appropriate referrals where further management was required.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-meaning2",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-meaning2-span",
+            "_type": "span",
+            "text": "The experience also gave AWIHF practical lessons about how future outreach activities can be planned and scaled more effectively. Chronic conditions like hypertension and diabetes were identified as key non-communicable diseases needing ongoing referral pathways, while high turnout demonstrated that community trust and multi-service convenience remain central to expanding rural healthcare access.",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-partners-heading",
+        "_type": "block",
+        "style": "h2",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-part-h2",
+            "_type": "span",
+            "text": "Partner Collaboration",
+            "marks": []
+          }
+        ]
+      },
+      {
+        "_key": "abwoch-partner1",
+        "_type": "block",
+        "style": "normal",
+        "markDefs": [],
+        "children": [
+          {
+            "_key": "abwoch-partner1-span",
+            "_type": "span",
+            "text": "AWIHF extends deep gratitude to our contributing partners who made this outreach possible through technical coordination, task-sharing, and cost-sharing: Tackle Sickle Cell Africa (TSCA) for sickle cell screening and counseling; The AIDS Support Organisation (TASO), Gulu Centre for HIV screening and counseling; Reproductive Health Uganda (RHU), Gulu Branch for cervical cancer screening and family planning; Abwoch Health Centre III and Omoro District Local Government for facility hosting and infrastructure; Hashtag Gulu for youth and community mobilization; and AWIHF's dedicated staff and student health volunteers.",
+            "marks": []
+          }
+        ]
+      }
     ]
   },
   {

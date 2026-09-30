@@ -58,17 +58,17 @@ export const storiesData: StoryData[] = [
   },
   {
     slug: 'abwoch-medical-outreach-2026',
-    title: 'Integrated Frontline Care at Abwoch Health Center III',
+    title: 'Abwoch Medical Outreach Reached 301 People in One Day',
     category: 'Community Outreach',
     image: '/images/AWIHF-Abwoch.webp',
     author: 'AWIHF Clinical Team',
     date: 'July 3, 2026',
-    readTime: '3 min read',
-    excerpt: 'A story from AWIHF community outreach at Abwoch Health Center III, bringing integrated primary healthcare and screening closer to rural families.',
+    readTime: '4 min read',
+    excerpt: 'How AWIHF official pre-launch medical outreach at Abwoch Health Centre III brought five essential health services directly to 301 community members in Omoro District.',
     content: [
-      'On 3 July 2026, our medical outreach at Abwoch Health Center III brought integrated primary healthcare and diagnostic screening directly to rural families in Gulu District who face steep travel barriers to clinical facilities.',
-      'The outreach created a comprehensive frontline health touchpoint: offering general medical consultations, reproductive health services, HIV screening and counseling, breast cancer screening, sickle cell screening, and cervical cancer awareness.',
-      'By combining preventive health education with direct screening and clinical referral pathways, the Abwoch outreach exemplified our commitment to meeting communities where they are and ensuring dignity across all stages of care.',
+      'On 3 July 2026, our pre-launch medical outreach at Abwoch Health Centre III in Tochi County, Omoro District, brought integrated primary healthcare and diagnostic screening directly to rural families under the theme "Rooted in Community, Rising in Health: The AWIHF Story."',
+      'Delivered in close collaboration with Tackle Sickle Cell Africa, TASO Gulu Centre, Reproductive Health Uganda, Hashtag Gulu, and Abwoch Health Centre III, the outreach provided general medical consultations, sickle cell screening, HIV testing, cervical cancer screening, and modern family planning.',
+      'By the end of the day, 301 community members were reached and 71 received documented diagnoses and treatment, proving the immense value of bringing coordinated, multi-partner frontline healthcare closer to underserved rural communities.',
     ],
   },
   {

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AWIHF Abwoch Medical Outreach Report 2026</title>
+  <style>
+    :root {
+      --brand-brown: #4B2C11;
+      --brand-orange: #F76B1C;
+      --brand-green: #2E5A36;
+      --bg-cream: #FFFDF9;
+      --card-bg: #FFFFFF;
+      --text-main: #1F1F1F;
+      --text-muted: #555555;
+      --border-color: #EADBC8;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: var(--bg-cream);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(75, 44, 17, 0.06);
+    }
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid var(--brand-orange);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+    }
+    .org-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--brand-green);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .print-btn {
+      background: var(--brand-orange);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .print-btn:hover {
+      opacity: 0.9;
+    }
+    h1 {
+      color: var(--brand-brown);
+      font-size: 1.85rem;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .meta-subtitle {
+      color: var(--brand-orange);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .lead-box {
+      background: #FDF6EE;
+      border-left: 4px solid var(--brand-orange);
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      font-style: italic;
+      color: #3A2410;
+      border-radius: 0 8px 8px 0;
+    }
+    h2 {
+      color: var(--brand-brown);
+      font-size: 1.35rem;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    h3 {
+      color: var(--brand-orange);
+      font-size: 1.1rem;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+    ul, ol {
+      margin: 12px 0 20px 24px;
+      font-size: 0.95rem;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    /* Indicator Cards */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin: 20px 0 30px;
+    }
+    .metric-card {
+      background: #FAF8F5;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+    .metric-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--brand-orange);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .metric-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--brand-brown);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .metric-desc {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    th {
+      background: var(--brand-brown);
+      color: #ffffff;
+      text-align: left;
+      padding: 10px 14px;
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    tr:nth-child(even) td {
+      background: #FAF6F0;
+    }
+    .total-row td {
+      font-weight: 700;
+      background: #F5EAE0 !important;
+      color: var(--brand-brown);
+    }
+    /* Progress Bars for Charts */
+    .bar-item {
+      margin-bottom: 12px;
+    }
+    .bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .bar-track {
+      background: #EFE7DE;
+      height: 10px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      background: linear-gradient(90deg, var(--brand-orange), #E5580C);
+      height: 100%;
+      border-radius: 5px;
+    }
+    .partner-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #FAFAFA;
+    }
+    .partner-name {
+      font-weight: 700;
+      color: var(--brand-brown);
+      font-size: 0.95rem;
+    }
+    .partner-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--brand-green);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .footer-note {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 2px solid var(--border-color);
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn {
+        display: none;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      table, .metrics-grid, .partner-box {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-bar">
+      <div>
+        <div class="org-title">Acholi Women in Health Foundation (AWIHF)</div>
+        <div style="font-size: 0.8rem; color: #777;">Official Medical Outreach Impact Documentation</div>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        Print / Save PDF
+      </button>
+    </div>
+
+    <h1>One Day, 301 People: What Your Support Made Possible at Abwoch</h1>
+    <div class="meta-subtitle">
+      Date: 3 July 2026 • Location: Abwoch Health Centre III, Tochi County, Omoro District • Theme: &ldquo;Rooted in Community, Rising in Health: The AWIHF Story&rdquo;
+    </div>
+
+    <div class="lead-box">
+      The official pre-launch medical outreach of the Acholi Women in Health Foundation proved that an integrated, partner-led community healthcare delivery model effectively addresses critical rural healthcare barriers.
+    </div>
+
+    <h2>1. Executive Summary & Context</h2>
+    <p>
+      On 3 July 2026, the Acholi Women in Health Foundation (AWIHF) held its official pre-launch medical outreach at Abwoch Health Centre III in Tochi County, Omoro District. The outreach was conducted as part of AWIHF's pre-launch programming, designed to demonstrate the Foundation's service model and reach underserved communities before our formal public launch.
+    </p>
+    <p>
+      The camp brought five essential health services to the community, free of charge, through close collaboration between AWIHF, health-service partners, Abwoch Health Centre III, and local district authorities. By the end of a single day, <strong>301 community members were reached</strong>, validating the immense demand for localized, dignified healthcare in Northern Uganda.
+    </p>
+
+    <h2>2. Impact at a Glance</h2>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">301</div>
+        <div class="metric-label">People Reached</div>
+        <div class="metric-desc">Across 5 integrated service streams</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">121</div>
+        <div class="metric-label">General Consults</div>
+        <div class="metric-desc">71.1% women; 71 treated</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">76</div>
+        <div class="metric-label">Sickle Cell Tests</div>
+        <div class="metric-desc">23 carriers/affected identified</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">56</div>
+        <div class="metric-label">HIV Reach</div>
+        <div class="metric-desc">52 tested; 3 PrEP initiated</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">35</div>
+        <div class="metric-label">Cervical Screenings</div>
+        <div class="metric-desc">1 referred for management</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">13</div>
+        <div class="metric-label">Family Planning</div>
+        <div class="metric-desc">Contraception & counseling</div>
+      </div>
+    </div>
+
+    <h2>3. Service Distribution Chart & Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Service Stream</th>
+          <th style="text-align: right;">People Served</th>
+          <th style="text-align: right;">Share of Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>General medical consultations</td>
+          <td style="text-align: right; font-weight: bold;">121</td>
+          <td style="text-align: right;">40.2%</td>
+        </tr>
+        <tr>
+          <td>Sickle cell screening</td>
+          <td style="text-align: right; font-weight: bold;">76</td>
+          <td style="text-align: right;">25.2%</td>
+        </tr>
+        <tr>
+          <td>HIV screening and counselling</td>
+          <td style="text-align: right; font-weight: bold;">56</td>
+          <td style="text-align: right;">18.6%</td>
+        </tr>
+        <tr>
+          <td>Cervical cancer screening</td>
+          <td style="text-align: right; font-weight: bold;">35</td>
+          <td style="text-align: right;">11.6%</td>
+        </tr>
+        <tr>
+          <td>Family planning</td>
+          <td style="text-align: right; font-weight: bold;">13</td>
+          <td style="text-align: right;">4.3%</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td style="text-align: right;">301</td>
+          <td style="text-align: right;">100.0%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="background: #FAFAFA; border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+      <div style="font-weight: 700; font-size: 0.85rem; color: var(--brand-brown); margin-bottom: 12px; text-transform: uppercase;">
+        Service Volume Distribution
+      </div>
+      <div class="bar-item">
+        <div class="bar-header"><span>General medical consultations</span><span>121 (40.2%)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 40.2%;"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-header"><span>Sickle cell screening</span><span>76 (25.2%)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 25.2%;"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-header"><span>HIV screening and counselling</span><span>56 (18.6%)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 18.6%;"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-header"><span>Cervical cancer screening</span><span>35 (11.6%)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 11.6%;"></div></div>
+      </div>
+      <div class="bar-item">
+        <div class="bar-header"><span>Family planning</span><span>13 (4.3%)</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 4.3%;"></div></div>
+      </div>
+    </div>
+
+    <h2>4. Detailed Clinical Findings</h2>
+
+    <h3>A. General Medical Consultations</h3>
+    <p>
+      General consultations were the busiest service point, with 121 individuals seen (40.2% of the camp attendance). Women represented 71.1% of these consultations. Seventy-one (71) consultations concluded with a documented clinical diagnosis and immediate treatment dispensing.
+    </p>
+    <ul>
+      <li><strong>Respiratory illness:</strong> 13 diagnoses (18.3%)</li>
+      <li><strong>Hypertension:</strong> 13 diagnoses (18.3%)</li>
+      <li><strong>Urinary tract infections (UTI):</strong> 13 diagnoses (18.3%)</li>
+      <li><strong>Malaria:</strong> 12 diagnoses (16.9%)</li>
+      <li><strong>Genital infections:</strong> 8 diagnoses (11.3%)</li>
+      <li><strong>Diabetes:</strong> 7 diagnoses (9.9%)</li>
+      <li><strong>Helminthiasis:</strong> 5 diagnoses (7.0%)</li>
+    </ul>
+    <p>
+      <em>Clinical Note:</em> Hypertension and diabetes were identified as priority chronic conditions requiring longitudinal follow-up and formalized referral pathways.
+    </p>
+
+    <h3>B. Sickle Cell Screening & Counseling</h3>
+    <p>
+      Delivered in partnership with Tackle Sickle Cell Africa (TSCA), 76 community members underwent screening and counseling:
+    </p>
+    <ul>
+      <li><strong>Normal haemoglobin (HbAA):</strong> 53 individuals (69.7%)</li>
+      <li><strong>Sickle cell trait (HbAS):</strong> 20 individuals (26.3%)</li>
+      <li><strong>Sickle cell disease (HbSS):</strong> 3 individuals (3.9%)</li>
+    </ul>
+    <p>
+      In total, 23 people (30.3% of those screened) were identified carrying either the sickle cell trait or disease. Knowledge of sickle cell status equips these individuals and families to make informed reproductive health decisions.
+    </p>
+
+    <h3>C. HIV Screening & Prevention Services</h3>
+    <p>
+      Delivered with The AIDS Support Organisation (TASO), Gulu Centre:
+    </p>
+    <ul>
+      <li><strong>Community reach:</strong> 56 people reached with education and counseling; 52 tested.</li>
+      <li><strong>Negative results:</strong> 51 clients (98.1%) tested negative.</li>
+      <li><strong>Positive results:</strong> 1 client (1.9%) tested positive and was immediately linked to psychosocial care and clinical management.</li>
+      <li><strong>PrEP initiation:</strong> 3 high-risk individuals were successfully started on Pre-Exposure Prophylaxis.</li>
+      <li><strong>Counseling:</strong> 1 client received counseling only.</li>
+    </ul>
+
+    <h3>D. Cervical Cancer Screening</h3>
+    <p>
+      Delivered with Reproductive Health Uganda (RHU), Gulu Branch:
+    </p>
+    <ul>
+      <li><strong>Total women screened:</strong> 35 women.</li>
+      <li><strong>Age distribution:</strong> Under 30 years: 12 (34.3%); 30–35 years: 5 (14.3%); Over 35 years: 18 (51.4%).</li>
+      <li><strong>Referral outcome:</strong> 1 woman (2.9%) was identified with suspicious clinical lesions and linked to secondary assessment and management.</li>
+    </ul>
+
+    <h3>E. Modern Family Planning Support</h3>
+    <p>
+      Delivered with RHU Gulu Branch, supporting 13 women (ages 17–45):
+    </p>
+    <ul>
+      <li><strong>Age groups:</strong> 17–20 yrs: 5 (38.5%); 21–25 yrs: 3 (23.1%); 26–45 yrs: 5 (38.5%).</li>
+      <li><strong>Method choice:</strong> Depo-Provera (Injectable): 11 (84.6%); Sayana Press (Subcutaneous): 2 (15.4%).</li>
+    </ul>
+
+    <h2>5. Partner Contributions</h2>
+    <div class="partner-box">
+      <div class="partner-role">Sickle Cell Specialist Partner</div>
+      <div class="partner-name">Tackle Sickle Cell Africa (TSCA)</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Pre/post-test counseling, rapid haemoglobin screening for 76 participants, and carrier education.
+      </div>
+    </div>
+    <div class="partner-box">
+      <div class="partner-role">HIV Services Partner</div>
+      <div class="partner-name">The AIDS Support Organisation (TASO), Gulu Centre</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Voluntary counseling and testing for 52 clients, PrEP initiation for 3 clients, and immediate care linkage.
+      </div>
+    </div>
+    <div class="partner-box">
+      <div class="partner-role">Reproductive Health Partner</div>
+      <div class="partner-name">Reproductive Health Uganda (RHU), Gulu Branch</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Visual inspection cervical cancer screening for 35 women and modern family planning commodities.
+      </div>
+    </div>
+    <div class="partner-box">
+      <div class="partner-role">Host Facility & Local Authority</div>
+      <div class="partner-name">Abwoch Health Centre III & Omoro District Local Government</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Provided clinical space, examination infrastructure, laboratory access, and local healthcare personnel.
+      </div>
+    </div>
+    <div class="partner-box">
+      <div class="partner-role">Community Mobilisation</div>
+      <div class="partner-name">Hashtag Gulu</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Mobilised adolescent girls, young mothers, and community members across Tochi County.
+      </div>
+    </div>
+    <div class="partner-box">
+      <div class="partner-role">Delivery & Coordination</div>
+      <div class="partner-name">AWIHF Staff and Healthcare Volunteers</div>
+      <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 2px;">
+        Overall camp coordination, primary clinical consultations, pharmacy dispensing, and documentation.
+      </div>
+    </div>
+
+    <h2>6. Operational Lessons Learned</h2>
+    <ol>
+      <li><strong>Demand outstripped capacity:</strong> Community turnout was higher than anticipated, resulting in clinician bottlenecks and waiting times across registration, consultation, and pharmacy points.</li>
+      <li><strong>Supplies ran short:</strong> Increased patient volume depleted certain curative and preventive drugs before the end of the day.</li>
+      <li><strong>Structured patient flow needed:</strong> The absence of an early triage station caused acutely ill patients to mix with preventive screening clients, causing registration congestion.</li>
+      <li><strong>Single-day model limits depth:</strong> A one-day outreach restricted the time available for thorough one-on-one counseling at each service desk.</li>
+    </ol>
+
+    <h2>7. Next-Phase Strategic Priorities</h2>
+    <ol>
+      <li><strong>Fund more clinicians</strong> at consultation points to cut client waiting times and avoid team exhaustion.</li>
+      <li><strong>Procure and quantify supplies earlier</strong>, ensuring adequate buffer stocks for essential drugs and reagents.</li>
+      <li><strong>Build structured referral and follow-up pathways</strong> for patients diagnosed with sickle cell, hypertension, diabetes, and cervical abnormalities.</li>
+      <li><strong>Expand cervical cancer screening and family planning outreach</strong> to increase uptake in rural communities.</li>
+      <li><strong>Train staff and volunteers in documentation tools</strong> to ensure complete digital and paper audit accuracy.</li>
+      <li><strong>Replicate the multi-partner outreach model</strong> at additional health centres across the Acholi sub-region.</li>
+    </ol>
+
+    <div class="footer-note">
+      <p><strong>Acholi Women in Health Foundation (AWIHF)</strong></p>
+      <p>Email: info@acholiwomeninhealth.org • Website: www.acholiwomeninhealth.org</p>
+      <p>Phone: +256 762 401363 / +256 772 388143 • Address: P. O. Box 361606, Pece, Gulu City, Uganda</p>
+      <p style="margin-top: 8px; font-style: italic;">&ldquo;Healthier women. Healthier families. Stronger communities. Together for Lasting Change.&rdquo;</p>
+    </div>
+  </div>
+
+</body>
+</html>

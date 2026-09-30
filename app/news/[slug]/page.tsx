@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
-import { ArrowLeft, Calendar, User, Clock, Bookmark, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Calendar, User, Clock, Bookmark, ExternalLink } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PortableTextRenderer } from '@/components/cms/PortableTextRenderer';
 import { getNewsPost, getNewsPosts } from '@/lib/content/news';
@@ -186,6 +186,28 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
                 Vote Now
                 <ExternalLink className="w-4 h-4 ml-2" aria-hidden="true" />
               </a>
+            </div>
+          )}
+
+          {article.reportUrl && (
+            <div className="mt-7 md:mt-9 rounded-xl border border-brand-orange/25 bg-orange-tint/30 p-5 md:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-brand-orange block mb-1">
+                  Full Outreach Documentation
+                </span>
+                <h2 className="text-xl md:text-2xl font-bold text-brand-brown">
+                  Explore Full Report
+                </h2>
+                <p className="text-[#111111] text-[14px] md:text-[15px] leading-relaxed mt-1">
+                  Access complete clinical findings, statistics, charts, partner contributions, lessons learned, and downloadable document.
+                </p>
+              </div>
+              <Link href={article.reportUrl} className="shrink-0 w-full sm:w-auto">
+                <Button variant="primary" size="medium" className="w-full sm:w-auto">
+                  Explore Full Report
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
             </div>
           )}
 
