@@ -3,6 +3,12 @@ import { logger } from '@/lib/observability/logger';
 import { sanityFetch } from '@/lib/sanity/client';
 import { imageUrl } from '@/lib/sanity/image';
 
+export type NewsGalleryImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type CmsNewsArticle = {
   slug: string;
   title: string;
@@ -19,6 +25,7 @@ export type CmsNewsArticle = {
   seoImage?: string | Record<string, unknown>;
   votingUrl?: string;
   reportUrl?: string;
+  galleryImages?: NewsGalleryImage[];
   author: string;
   readTime: string;
   content: string[];
@@ -29,6 +36,7 @@ export type NewsPost = Omit<CmsNewsArticle, 'image' | 'articleImage' | 'seoImage
   image: string;
   articleImage?: string;
   seoImage?: string;
+  galleryImages?: NewsGalleryImage[];
 };
 
 function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
@@ -48,6 +56,7 @@ function normalizeNewsArticle(article: CmsNewsArticle): NewsPost {
     seoImage: imageUrl(article.seoImage, 1200, 675) || undefined,
     votingUrl: article.votingUrl,
     reportUrl: article.reportUrl,
+    galleryImages: article.galleryImages,
     author: article.author,
     readTime: article.readTime,
     content: article.content,

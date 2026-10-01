@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { ArrowLeft, ArrowRight, Calendar, User, Clock, Bookmark, ExternalLink } from 'lucide-react';
 import { DonateCTA } from '@/components/sections/DonateCTA';
 import { PortableTextRenderer } from '@/components/cms/PortableTextRenderer';
+import { ProgrammeInPracticeGallery } from '@/components/shared/ProgrammeInPracticeGallery';
 import { getNewsPost, getNewsPosts } from '@/lib/content/news';
 import { organizationProfile } from '@/lib/config/organization';
 import { BreadcrumbJsonLd } from '@/components/seo/BreadcrumbJsonLd';
@@ -168,6 +169,18 @@ export default async function NewsDetailPage(props: NewsDetailProps) {
               {article.content.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}
+            </div>
+          )}
+
+          {article.galleryImages && article.galleryImages.length > 0 && (
+            <div className="mt-10 md:mt-14 pt-8 md:pt-10 border-t border-gray-100">
+              <ProgrammeInPracticeGallery
+                title={article.title}
+                heading="Outreach Field Documentation"
+                description="Visual records and photographic documentation from AWIHF's pre-launch medical outreach at Abwoch Health Centre III."
+                images={article.galleryImages}
+                wrapInSection={false}
+              />
             </div>
           )}
 

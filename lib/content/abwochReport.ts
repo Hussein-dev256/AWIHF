@@ -105,7 +105,7 @@ export const abwochReportData: AbwochReportData = {
   theme: 'Rooted in Community, Rising in Health: The AWIHF Story',
   date: '3 July 2026',
   location: 'Abwoch Health Centre III, Tochi County, Omoro District',
-  downloadUrl: '/reports/AWIHF-Abwoch-Outreach-Report-2026.html',
+  downloadUrl: '/reports/AWIHF-Abwoch-Outreach-Report-2026.pdf',
   keyMetrics: [
     {
       value: '301',
